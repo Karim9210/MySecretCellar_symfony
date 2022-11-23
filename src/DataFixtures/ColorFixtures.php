@@ -8,10 +8,11 @@ use Doctrine\Persistence\ObjectManager;
 
 class ColorFixtures extends Fixture
 {
+    public const PREFIX ="color_";
     public const COLORS = [
-        'Rouge',
-        'Blanc',
-        'Rosé',
+        'rouge',
+        'blanc',
+        'rosé',
     ];
     public function load(ObjectManager $manager): void
     {
@@ -19,7 +20,7 @@ class ColorFixtures extends Fixture
             $color = new Color();
             $color->setLabel($colorsLabel);
             $manager->persist($color);
-            $this->addReference('color_' . $colorsLabel, $color);
+            $this->addReference(self::PREFIX . $colorsLabel, $color);
         }
         $manager->flush();
     }

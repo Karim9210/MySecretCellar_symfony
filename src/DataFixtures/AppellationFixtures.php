@@ -8,6 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppellationFixtures extends Fixture
 {
+    public const PREFIX = 'appellation_';
     public const APPELLATION = [
         "margaux",
         "haut-médoc",
@@ -78,7 +79,6 @@ class AppellationFixtures extends Fixture
         "la roulerie"
     ];
 
-    public const PREFIX = 'appellation_';
     public function load(ObjectManager $manager): void
     {
         foreach (self::APPELLATION as $appellationLabel) {

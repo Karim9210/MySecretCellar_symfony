@@ -8,6 +8,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class WinePairingFixtures extends Fixture
 {
+    public const PREFIX = 'winePairing_';
+
     public const WINEPAIRING = [
         "charcuterie",
         "viande rouge",
@@ -24,7 +26,7 @@ class WinePairingFixtures extends Fixture
             $winePairing = new WinePairing();
             $winePairing->setLabel($winePairingLabel);
             $manager->persist($winePairing);
-            $this->addReference('winePairing_' . $winePairingLabel, $winePairing);
+            $this->addReference(self::PREFIX . $winePairingLabel, $winePairing);
         }
         $manager->flush();
     }

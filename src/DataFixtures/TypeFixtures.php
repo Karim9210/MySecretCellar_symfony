@@ -8,6 +8,8 @@ use Doctrine\Persistence\ObjectManager;
 
 class TypeFixtures extends Fixture
 {
+    public const PREFIX = 'type_';
+
     public const TYPES =
         [
             "sec",
@@ -27,7 +29,7 @@ class TypeFixtures extends Fixture
             //la persistance en base de données
             $manager->persist($type);
             //référence pour chaque catégorie
-            $this->addReference('type_' . $typeLabel, $type);
+            $this->addReference(self::PREFIX . $typeLabel, $type);
         }
 
         $manager->flush();
