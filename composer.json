@@ -98,7 +98,6 @@
             "php bin/console d:m:m -n",
             "php bin/console d:f:l --append"
         ]
-
     },
     "conflict": {
         "symfony/symfony": "*"
