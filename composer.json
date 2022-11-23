@@ -34,7 +34,7 @@
         "symfony/property-access": "6.1.*",
         "symfony/property-info": "6.1.*",
         "symfony/proxy-manager-bridge": "6.1.*",
-        "symfony/runtime": "6.1.*",
+        "symfony/runtime": "^6.1",
         "symfony/security-bundle": "6.1.*",
         "symfony/serializer": "6.1.*",
         "symfony/string": "6.1.*",
@@ -97,6 +97,7 @@
             "php bin/console d:m:m -n",
             "php bin/console d:f:l --append"
         ]
+
     },
     "conflict": {
         "symfony/symfony": "*"
