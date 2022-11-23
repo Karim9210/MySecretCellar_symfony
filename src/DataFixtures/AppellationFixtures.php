@@ -83,7 +83,7 @@ class AppellationFixtures extends Fixture
     {
         foreach (self::APPELLATION as $appellationLabel) {
             $appellation = new Appellation();
-            $appellation->setLabel($appellationLabel);
+            $appellation->setLabelAppellation($appellationLabel);
             $manager->persist($appellation);
             $this->addReference(self::PREFIX . $appellationLabel, $appellation);
         }

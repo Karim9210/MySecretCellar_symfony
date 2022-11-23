@@ -25,7 +25,7 @@ class TypeFixtures extends Fixture
             //instanciation d'un nouvel objet Type
             $type = new Type();
             //la définition du label du nouveau type
-            $type->setLabel($typeLabel);
+            $type->setLabelType($typeLabel);
             //la persistance en base de données
             $manager->persist($type);
             //référence pour chaque catégorie

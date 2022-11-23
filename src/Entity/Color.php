@@ -31,12 +31,12 @@ class Color
         return $this->id;
     }
 
-    public function getLabel(): ?string
+    public function getLabelColor(): ?string
     {
         return $this->label;
     }
 
-    public function setLabel(string $label): self
+    public function setLabelColor(string $label): self
     {
         $this->label = $label;
 

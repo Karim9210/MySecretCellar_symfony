@@ -65,16 +65,16 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::USER as $key=>$userIndex) {
+        foreach (self::USER as $key => $userIndex) {
             $user = new User();
-            $user                
+            $user
             ->setPseudo($userIndex['pseudo'])
             ->setEmail($userIndex['email'])
             ->setPassword($userIndex['password'])
             ->setAvatar($userIndex['avatar'])
             ->setRoles($userIndex["role"]);
             $manager->persist($user);
-            $this->addReference(self::PREFIX . $key+1, $user);
+            $this->addReference(self::PREFIX . $key + 1, $user);
 
             $manager->flush();
         }

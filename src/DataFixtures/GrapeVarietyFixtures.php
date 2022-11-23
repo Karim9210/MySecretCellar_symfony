@@ -33,12 +33,12 @@ class GrapeVarietyFixtures extends Fixture
         "pinot blanc"
     ];
 
-    
+
     public function load(ObjectManager $manager): void
     {
         foreach (self::GRAPEVARIETY as $grapeVarietyLabel) {
             $grapeVariety = new GrapeVariety();
-            $grapeVariety->setLabel($grapeVarietyLabel);
+            $grapeVariety->setLabelGrapeVariety($grapeVarietyLabel);
             $manager->persist($grapeVariety);
             $this->addReference(self::PREFIX . $grapeVarietyLabel, $grapeVariety);
 

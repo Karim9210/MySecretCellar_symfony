@@ -34,7 +34,7 @@ class RegionFixtures extends Fixture
             //instanciation d'un nouvel objet Type
             $region = new Region();
             //la définition du label du nouveau type
-            $region->setLabel($regionLabel);
+            $region->setLabelRegion($regionLabel);
             //la persistance en base de données
             $manager->persist($region);
             //référence pour chaque catégorie

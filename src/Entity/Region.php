@@ -31,12 +31,12 @@ class Region
         return $this->id;
     }
 
-    public function getLabel(): ?string
+    public function getLabelRegion(): ?string
     {
         return $this->label;
     }
 
-    public function setLabel(?string $label): self
+    public function setLabelRegion(?string $label): self
     {
         $this->label = $label;
 

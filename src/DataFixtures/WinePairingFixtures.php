@@ -24,7 +24,7 @@ class WinePairingFixtures extends Fixture
     {
         foreach (self::WINEPAIRING as $winePairingLabel) {
             $winePairing = new WinePairing();
-            $winePairing->setLabel($winePairingLabel);
+            $winePairing->setLabelWinePairing($winePairingLabel);
             $manager->persist($winePairing);
             $this->addReference(self::PREFIX . $winePairingLabel, $winePairing);
         }

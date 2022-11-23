@@ -31,12 +31,12 @@ class Appellation
         return $this->id;
     }
 
-    public function getLabel(): ?string
+    public function getLabelAppellation(): ?string
     {
         return $this->label;
     }
 
-    public function setLabel(?string $label): self
+    public function setLabelAppellation(?string $label): self
     {
         $this->label = $label;
 

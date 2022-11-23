@@ -31,12 +31,12 @@ class Type
         return $this->id;
     }
 
-    public function getLabel(): ?string
+    public function getLabelType(): ?string
     {
         return $this->label;
     }
 
-    public function setLabel(?string $label): self
+    public function setLabelType(?string $label): self
     {
         $this->label = $label;
 
