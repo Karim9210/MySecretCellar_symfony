@@ -256,7 +256,7 @@ class CountryFixtures extends Fixture
     {
         foreach (self::COUNTRIES as $countryLabel) {
             $country = new Country();
-            $country->setLabel($countryLabel);
+            $country->setLabelCountry($countryLabel);
             $manager->persist($country);
             $this->addReference(self::PREFIX . $countryLabel, $country);
         }

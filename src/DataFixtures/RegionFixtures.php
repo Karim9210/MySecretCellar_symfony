@@ -8,6 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class RegionFixtures extends Fixture
 {
+    public const PREFIX = 'region_';
     public const REGIONS =
         [
         "champagne",
@@ -33,11 +34,11 @@ class RegionFixtures extends Fixture
             //instanciation d'un nouvel objet Type
             $region = new Region();
             //la définition du label du nouveau type
-            $region->setLabel($regionLabel);
+            $region->setLabelRegion($regionLabel);
             //la persistance en base de données
             $manager->persist($region);
             //référence pour chaque catégorie
-            $this->addReference('region_' . $regionLabel, $region);
+            $this->addReference(self::PREFIX . $regionLabel, $region);
         }
         $manager->flush();
     }

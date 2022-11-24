@@ -8,6 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class UserFixtures extends Fixture
 {
+    public const PREFIX = "user_";
     public const USER = [
         [
             "pseudo" => "admin",
@@ -60,19 +61,20 @@ class UserFixtures extends Fixture
         ]
     ];
 
-    public const PREFIX = "user_";
+
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::USER as $userIndex) {
+        foreach (self::USER as $key => $userIndex) {
             $user = new User();
             $user
-                ->setPseudo($userIndex['pseudo'])
-                ->setEmail($userIndex['email'])
-                ->setPassword($userIndex['password'])
-                ->setAvatar($userIndex['avatar'])
-                ->setRoles($userIndex["role"]);
+            ->setPseudo($userIndex['pseudo'])
+            ->setEmail($userIndex['email'])
+            ->setPassword($userIndex['password'])
+            ->setAvatar($userIndex['avatar'])
+            ->setRoles($userIndex["role"]);
             $manager->persist($user);
+            $this->addReference(self::PREFIX . ($key + 1), $user);
 
             $manager->flush();
         }

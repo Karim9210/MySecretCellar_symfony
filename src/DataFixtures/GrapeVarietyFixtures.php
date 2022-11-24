@@ -8,6 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class GrapeVarietyFixtures extends Fixture
 {
+    public const PREFIX = 'grapeVariety_';
     public const GRAPEVARIETY =
     [
         "cabernet-franc noir",
@@ -32,12 +33,12 @@ class GrapeVarietyFixtures extends Fixture
         "pinot blanc"
     ];
 
-    public const PREFIX = 'grapeVariety_';
+
     public function load(ObjectManager $manager): void
     {
         foreach (self::GRAPEVARIETY as $grapeVarietyLabel) {
             $grapeVariety = new GrapeVariety();
-            $grapeVariety->setLabel($grapeVarietyLabel);
+            $grapeVariety->setLabelGrapeVariety($grapeVarietyLabel);
             $manager->persist($grapeVariety);
             $this->addReference(self::PREFIX . $grapeVarietyLabel, $grapeVariety);
 
