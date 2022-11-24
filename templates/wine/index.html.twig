@@ -1,0 +1,57 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Wine index{% endblock %}
+
+{% block body %}
+    <h1>Wine index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Domaine</th>
+                <th>Description</th>
+                <th>Comment</th>
+                <th>Ranking</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Value</th>
+                <th>CellarLocation</th>
+                <th>Picture</th>
+                <th>DrinkBefore</th>
+                <th>Vintage</th>
+                <th>PurchaseDate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for wine in wines %}
+            <tr>
+                <td>{{ wine.id }}</td>
+                <td>{{ wine.domaine }}</td>
+                <td>{{ wine.description }}</td>
+                <td>{{ wine.comment }}</td>
+                <td>{{ wine.ranking }}</td>
+                <td>{{ wine.price }}</td>
+                <td>{{ wine.stock }}</td>
+                <td>{{ wine.value }}</td>
+                <td>{{ wine.cellarLocation }}</td>
+                <td>{{ wine.picture }}</td>
+                <td>{{ wine.drinkBefore }}</td>
+                <td>{{ wine.vintage }}</td>
+                <td>{{ wine.purchaseDate ? wine.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_wine_show', {'id': wine.id}) }}">show</a>
+                    <a href="{{ path('app_wine_edit', {'id': wine.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_wine_new') }}">Create new</a>
+{% endblock %}

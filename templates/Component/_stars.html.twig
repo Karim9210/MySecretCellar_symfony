@@ -1,0 +1,30 @@
+{% block stars %}
+	<span class="box d-flex">
+		{% if wine.rank == "1" %}
+			<i class="bi bi-star text-warning"></i>
+		{% endif %}
+		{% if wine.rank == "2" %}
+			<i class="bi bi-star-fill text-warning"></i>
+			<i class="bi bi-star-fill text-warning"></i>
+		{% endif %}
+		{% if wine.rank == "3" %}
+			<i class="bi bi-star-fill text-warning"></i>
+			<i class="bi bi-star-fill text-warning"></i>
+			<i class="bi bi-star-fill text-warning"></i>
+		{% endif %}
+		{% if wine.rank == "4" %}
+			<i class="bi bi-star-fill text-warning"></i>
+			<i class="bi bi-star-fill text-warning"></i>
+			<i class="bi bi-star-fill text-warning"></i>
+			<i class="bi bi-star-fill text-warning"></i>
+		{% endif %}
+		{% if wine.rank == "5" %}
+			<i class="bi bi-star-fill text-warning"></i>
+			<i class="bi bi-star-fill text-warning"></i>
+			<i class="bi bi-star-fill text-warning"></i>
+			<i class="bi bi-star-fill text-warning"></i>
+			<i class="bi bi-star-fill text-warning"></i>
+		{% endif %}
+	</span>
+
+{% endblock %}

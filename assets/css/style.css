@@ -1,0 +1,70 @@
+:root {
+    --lightPrimary: #f7f7f3;
+    --prune: #4a2c3b;
+    --kakiOpacity: #877e605e;
+    --lightSecondary: #e5e2d3;
+    --yellowWine: #ffe675;
+    --pinkWine: #eabca9;
+    --pinkWineOpacity: #eabda945;
+    --redWine: #893a2c;
+    --font-primary: "Lato", sans-serif;
+    --font-secondary: "Playfair Display", serif;
+    --font-third: "Prata", serif;
+    --font-maj: "Playfair Display SC";
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: var(--font-primary);
+}
+h1 {
+    font-family: var(--font-maj);
+}
+h2 {
+    font-family: var(--font-secondary);
+}
+a {
+    text-decoration: none;
+}
+
+@media (max-width: 576px) {
+    .navbar-collapse {
+        height: 86vh;
+    }
+
+    .responsive-font-example {
+        font-size: 15px;
+    }
+
+    .fontfooter {
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 576px) {
+    .responsive-font-example {
+        font-size: 20px;
+    }
+}
+
+/*//////////////////////index.html.twig////////////////////////////////////////*/
+
+a:hover {
+    color: white;
+}
+
+/*////////////////////////////////register.html.twig//////////////////////////////*/
+
+.form-control::placeholder {
+    color: var(--prune);
+    opacity: 1;
+    font-size: larger;
+}
+
+/*/////////////// Ajout de blur sur les modals //////////////////////////////*/
+.modal.blur {
+    backdrop-filter: blur(3px);
+}

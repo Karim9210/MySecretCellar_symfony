@@ -1,0 +1,64 @@
+form {
+    background-color: var(--lightPrimary);
+    color: var(--lightPrimary);
+}
+.img_bouteille {
+    /* background-color: var(--lightPrimary); */
+    max-width: 4rem;
+    height: auto;
+}
+.textearea {
+    width: 95%;
+}
+/* bouton */
+.btn_dark {
+    background-color: var(--prune);
+    border-style: solid;
+    color: var(--lightPrimary);
+}
+.btn_light {
+    color: var(--lightPrimary);
+}
+
+@media screen and (min-width: 700px) {
+    form {
+        width: 45%;
+        margin: auto;
+        margin-top: 5px;
+    }
+
+    .div_illustration {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 25%;
+    }
+    .img_input {
+        display: flex;
+        align-items: center;
+    }
+    .img_bouteille {
+        margin-bottom: 5px;
+        width: 15%;
+    }
+    .gpe_right_img {
+        margin-left: 10px;
+        width: 53%;
+    }
+    .checkBoxLeft {
+        padding-left: 5%;
+    }
+    .etoile {
+        display: flex;
+        flex-direction: row;
+        gap: 2%;
+    }
+
+    #input_etoile1,
+    #input_etoile2,
+    #input_etoile3,
+    #input_etoile4,
+    #input_etoile5 {
+        display: flex;
+    }
+}

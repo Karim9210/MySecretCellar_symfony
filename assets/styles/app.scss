@@ -1,2 +1,22 @@
+
 //start coding by removing this file and adding yours ;)
 @import "wcs";
+// // import the functions & variables
+@import "../../vendor/twbs/bootstrap/scss/_functions.scss";
+@import "../../vendor/twbs/bootstrap/scss/_variables.scss";
+
+//custom variables
+$custom-colors: (
+    "prune": #4a2c3b,
+    "lightPrimary": #f7f7f3,
+    "lightSecondary": #e5e2d3,
+    "yellowWine": #ffe675,
+    "pinkWine": #eabca9,
+    "redWine": #893a2c,
+);
+
+$theme-colors: map-merge($custom-colors, $theme-colors);
+
+//import bootstrap
+@import "../../vendor/twbs/bootstrap/scss/bootstrap.scss";
+@import "~bootstrap/scss/bootstrap";
