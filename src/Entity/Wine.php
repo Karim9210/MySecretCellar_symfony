@@ -8,6 +8,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ * @SuppressWarnings(PHPMD.TooManyFields)
+ */
 #[ORM\Entity(repositoryClass: WineRepository::class)]
 class Wine
 {
@@ -125,12 +129,12 @@ class Wine
         return $this;
     }
 
-    public function getRanking(): ?float
+    public function getRanking(): ?int
     {
         return $this->ranking;
     }
 
-    public function setRanking(?float $ranking): self
+    public function setRanking(?int $ranking): self
     {
         $this->ranking = $ranking;
 

@@ -46,7 +46,10 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
           "domaine" => "clos saint apollo",
-          "description" => "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. ",
+          "description" => "There are many variations of passages of 
+          Lorem Ipsum available, but the majority have suffered alteration
+           in some form, by injected humour, or randomised words which 
+           don't look even slightly believable. ",
           "comment" => "Lorem Ipsum is therefore always free ",
           "rank" => 3.0,
           "price" => 15.0,
@@ -98,7 +101,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
            in some form, by injected humour, or randomised words which don't
            look even slightly believable. ",
           "comment" => "Lorem Ipsum is therefore always free ",
-          "rank" => 4.0,
+          "rank" => 4,
           "price" => 4.3,
           "stock" => 2,
           "value" => 10.0,
@@ -123,7 +126,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
            in some form, by injected humour, or randomised words 
            which don't look even slightly believable. ",
           "comment" => "Lorem Ipsum is therefore always free ",
-          "rank" => 5.0,
+          "rank" => 5,
           "price" => 7.1,
           "stock" => 10,
           "value" => 12.0,
@@ -148,7 +151,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
           alteration in some form, by injected humour, or randomised
           words which don't look even slightly believable. ",
           "comment" => "Lorem Ipsum is therefore always free ",
-          "rank" => 5.0,
+          "rank" => 5,
           "price" => 9.0,
           "stock" => 4,
           "value" => 15.0,
@@ -173,7 +176,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
           this the first true generator on the Internet.",
           "comment" => "Lorem Ipsum generators on the Internet 
           tend to repeat predefined chunks as necessary.",
-          "rank" => 5.0,
+          "rank" => 5,
           "price" => 22.0,
           "stock" => 2,
           "value" => 30.0,
@@ -199,7 +202,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
           here', making it look like readable English. ",
           "comment" => "The point of using Lorem Ipsum is 
           that it has a more-or-less normal distribution of letters, as opposed to using.",
-          "rank" => 4.0,
+          "rank" => 4,
           "price" => 12.0,
           "stock" => 5,
           "value" => 12.0,
@@ -224,7 +227,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
           software like Aldus PageMaker including versions of Lorem Ipsum.",
           "comment" => "Letraset sheets containing Lorem Ipsum passages, 
           and more recently with desktop publishing software like Aldus.",
-          "rank" => 0.0,
+          "rank" => 1,
           "price" => 22.0,
           "stock" => 5,
           "value" => 32.0,
@@ -250,7 +253,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
           l'attaque est franche et très bien équilibrée avec 
           cette belle fraîcheur très caractéristique des vins de la maison. ",
           "comment" => "J'AIME BEAUCOUP miam",
-          "rank" => 5.0,
+          "rank" => 5,
           "price" => 12.0,
           "stock" => 2,
           "value" => 12.0,
@@ -276,7 +279,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
           u Languedoc-Roussillon se montre particulièrement 
           accessible et fédérateur dès l'apéritif.",
           "comment" => "Cépage chardonnay. Vin très léger.",
-          "rank" => 5.0,
+          "rank" => 5,
           "price" => 12.0,
           "stock" => 2,
           "value" => 12.0,

@@ -74,7 +74,7 @@ class UserFixtures extends Fixture
             ->setAvatar($userIndex['avatar'])
             ->setRoles($userIndex["role"]);
             $manager->persist($user);
-            $this->addReference(self::PREFIX . $key + 1, $user);
+            $this->addReference(self::PREFIX . ($key + 1), $user);
 
             $manager->flush();
         }
