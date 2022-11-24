@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Register</title>
+
+		<link rel="stylesheet" href="assets/styles/app.scss">
+		<link rel="stylesheet" href="/assets/css/style.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato&family=Playfair+Display&family=Playfair+Display+SC&family=Prata&display=swap" rel="stylesheet">
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+
+	{% block body %}
+		<div class="bg-lightPrimary ">
+
+			<div class="bg-lightSecondary pt-4 w-100" style="height: 180px">
+				<div style="border-bottom:solid; border-bottom-color:var(--prune)">
+					<h1 class="pt-2 ps-2 mt-5 mx-5 text-prune" style="letter-spacing:5px">
+						Inscription
+					</h1>
+				</div>
+			</div>
+
+			{#************* FORMULAIRE D'INSCRIPTION *********#}
+			<div class="d-flex  justify-content-center align-items-center" style="height:100vh;">
+				<div class="mb-5 p-2 d-flex flex-column">
+					<div class="text-center ">
+						<img src="{{ asset('build/images/secretCellarLogoregister.svg') }}" width="60%" alt="logo secretCellar">
+					</div>
+
+					{{ form_start(registrationForm) }}
+					<div class="container">
+						{{ form_row(registrationForm.pseudo) }}
+						{{ form_row(registrationForm.email) }}
+						{{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+						{{ form_row(registrationForm.RGPDConsent) }}
+						<a href="">Voir nos conditions d'utilisation</a>
+						<div class="d-flex justify-content-center">
+							<button type="submit" class="btn bg-prune text-lightPrimary mb-3 mt-3">Je m'inscris</button>
+						</div>
+
+						{{ form_end(registrationForm) }}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
