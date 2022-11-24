@@ -40,11 +40,15 @@ class WineController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_wine_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_wine_show', methods: ['GET'])]
     public function show(Wine $wine): Response
     {
+        $winePairings=($wine->getWinePairing()->toArray());
+        
+        // dd($winePairingShow[0].label);
         return $this->render('wine/show.html.twig', [
             'wine' => $wine,
+            // 'winePairings'=> $winePairings
         ]);
     }
 

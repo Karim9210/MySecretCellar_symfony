@@ -3,7 +3,7 @@
 {% block title %}Wine{% endblock %}
 
 {% block body %}
-    <h1>Wine</h1>
+    {# <h1>Wine</h1>
 
     <table class="table">
         <tbody>
@@ -60,7 +60,175 @@
                 <td>{{ wine.purchaseDate ? wine.purchaseDate|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
-    </table>
+    </table> #}
+    {% block content %}
+    {# {{dump(wine, wine.winePairing)}} #}
+
+	<div class="bg-lightSecondary pt-4 w-100" style="height: 180px">
+		<div style="border-bottom:solid; border-bottom-color:var(--prune)">
+			<h1 class="pt-2 ps-2 mt-5 mx-5 text-prune" style="letter-spacing:5px">
+				Mon vin
+			</h1>
+		</div>
+	</div>
+
+	<div class="bg-lightPrimary p-4">
+		<div
+			class="bg-lightPrimary show_wine my-5 border-start border-end shadow-lg text-prune">
+
+			{# first section #}
+			<div
+				class="d-flex  flex-column  p-4">
+				{# info #}
+				<div class="d-flex flex-column w-100 ps-2 justify-content-around">
+					<div class="w-100 d-flex flex-column justify-content-center">
+
+						<div class="d-flex flex-column justify-content-between ">
+							<div class="d-flex justify-content-between w-100">
+								<p style="font-family: var(--font-secondary);" class="text-prune text-shadow-lg lh-sm fs-1 p-0 m-0">{{wine.domaine|title}}</p>
+
+
+								{% include "Component/_stars.html.twig" %}
+
+
+							</div>
+
+							<p class="text-prune fs-3 fst-italic p-0 m-0">
+								{{ wine.appellation.labelAppellation|capitalize}}
+
+							</p>
+							<p class="text-prune fs-5 fw-semibold p-0 m-0">{{wine.vintage}}</p>
+
+							<div class="d-flex flex-row ">
+								<div class="d-flex flex-column justify-content-center w-100 ">
+									<p class="text-prune fs-5 m-0 p-0">
+										Vin
+										{{ wine.color.labelColor}}
+										{{wine.type.labelType}}</p>
+									<p>
+										Il accompagnera parfaitement :<br></p>
+									<p class="px-2">
+										{% for winePairingList in wine.winePairing  %}
+                                            {{winePairingList.LabelWinePairing}}
+											<br>
+										{% endfor %}
+									</p>
+								</div>
+								<div>
+									<img src={{wine.picture}} alt="Wine Picture" style="max-height: 15Rem; object-fit:cover">
+								</div>
+							</div>
+							<hr class="border-3">
+
+
+						</div>
+
+						<div class="d-flex justify-content-between ">
+							<div class="d-flex gap-4"></div>
+
+						</div>
+
+					</div>
+
+					<div class="d-flex justify-content-between gap-4">
+						<div class="d-flex flex-column">
+							<p>
+								<strong>Provenance :
+								</strong>
+								{{wine.country.labelCountry|capitalize}}
+							</p>
+
+							<p>
+								<strong>Région :
+								</strong>
+								{{wine.region.labelRegion|capitalize}}</p>
+							<p class="mb-0">
+								<strong>Limite de conservation :
+								</strong>
+								{{wine.drinkBefore}}</p>
+						</div>
+
+						<div class="d-flex text-end align-items-end gap-3 flex-column flex-lg-row">
+							<span class="text-prune fs-5 ">
+								Stock :
+								{{wine.stock}}
+							</span>
+
+							<button type="button" class="btn btn-prune rounded w-10" type="button" data-bs-toggle="modal" data-bs-target="#modal">
+								<i style="font-size:15px;" class="bi bi-plus-lg"></i>
+								/
+								<i style="font-size:15px;" class="bi bi-dash-lg"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			{# second section description #}
+			<div class=" border-top border-bottom border-prune  p-4" style="background-color: var(--kakiOpacity)">
+				<h3>Description</h3>
+				<p>{{wine.description}}</p>
+			</div>
+
+			{# third section infos achat #}
+			<div class="p-4 d-flex justify-content-between">
+				<div>
+					<p class="text-prune">Prix d'achat :
+						{{wine.price}}€</p>
+					<p class="text-prune">Valeur :
+						{{wine.value}}€</p>
+					<p class="text-prune">Date d'achat :
+						{{wine.purchaseDate}}</p>
+					<p>
+						<strong>Emplacement dans ma cave :
+						</strong>
+						{{wine.cellarLocation}}</p>
+				</div>
+			</div>
+
+			{# fourth section commentaire #}
+			<div class=" border-top border-bottom border-prune p-4" style="background-color: var(--kakiOpacity)">
+				<h3>Mon commentaire</h3>
+				<p>{{wine.comment}}</p>
+			</div>
+
+
+			{# fifth section buttons modify and return #}
+			<div class="d-flex justify-content-between p-4">
+				<a href="maCave" type="button" class="btn p-0 m-0">
+					<i style="font-size:42px;" class="bi bi-arrow-left"></i>
+				</a>
+				<a href="showUpdateForm?id={{wine.id}}" type="button" class="btn btn-prune w-25 my-3 p-2 rounded h-2">
+					<p class="mb-0 text-center">Modifier</p>
+				</a>
+
+
+			</div>
+		</div>
+	</div>
+
+
+	{# *************** MODAL STOCK ******************* #}
+	<div class="modal blur" id="modal">
+		<div class=" modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header  text-center">
+					<h2 class="text-prune">Stock</h2>
+					<div class="btn-close" data-bs-dismiss="modal"></div>
+				</div>
+				{# <form action="updateStock?id={{wine.id}}" method="POST" class="modal-body">
+					<input type="number" id="stock" name="stock" min="1" max="1200" class="w-100 mb-3" style="text-align:center">
+					<div class="d-flex gap-2 justify-content-center">
+						<button type="submit" class=" btn btn-pinkWine  w-50  btn-sm">Valider</button>
+						<button type="button" data-bs-dismiss="modal" class=" btn bg-lightprimary w-50 btn-sm border border-dark">Annuler</button>
+					</div>
+				</form> #}
+			</div>
+		</div>
+	</div>
+	{# ****************** END modal STOCK ******************** #}
+{% endblock %}
 
     <a href="{{ path('app_wine_index') }}">back to list</a>
 
