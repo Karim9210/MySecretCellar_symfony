@@ -1,0 +1,165 @@
+{# <!DOCTYPE html>
+
+<title>User</title>
+
+{% block body %}
+	<h1>User</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ user.id }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ user.email }}</td>
+			</tr>
+			<tr>
+				<th>Roles</th>
+				<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td>{{ user.password }}</td>
+			</tr>
+			<tr>
+				<th>Pseudo</th>
+				<td>{{ user.pseudo }}</td>
+			</tr>
+			<tr>
+				<th>Avatar</th>
+				<td>{{ user.avatar }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_user_index') }}">back to list</a>
+
+	<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+
+	{{ include('user/_delete_form.html.twig') }}
+{% endblock %} #}
+
+
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+	<div class="bg-lightPrimary pb-5">
+		<div class="bg-lightSecondary pt-4 w-100" style="height: 180px">
+			<div style="border-bottom:solid; border-bottom-color:var(--prune)">
+				<h1 class="pt-2 ps-2 mt-5 mx-5 text-prune" style="letter-spacing:5px">
+					Mon profil
+				</h1>
+			</div>
+		</div>
+
+
+		<div class="d-flex justify-content-center align-items-center flex-column" style="height:100;">
+			<div class="text-center pt-4">
+				<img src="{{ asset('build/images/secretCellarLogoregister.svg') }}" width="40%" alt="logo secretCellar">
+			</div>
+
+			<div class="col-lg-8 w-50">
+				<div class="card mb-4 ">
+					<div class="card-body ">
+						<hr>
+						<div class="row">
+							<div class="col-sm-3">
+								<img src="{{ user.avatar }}" class="rounded-circle" style="width: 150px;" alt="Avatar"/>
+							</div>
+
+						</div>
+						<div class="row">
+							<div class="col-sm-3 mt-2">
+								<p class="mb-0 text-prune">Nom d'utilisateur :
+								</p>
+							</div>
+							<div class="col-sm-9 mt-2">
+								<p class="text-muted mb-0">{{user.pseudo}}</p>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-3">
+								<p class="mb-0 text-prune">Email</p>
+							</div>
+							<div class="col-sm-9">
+								<p class="text-muted mb-0">{{user.email}}</p>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-3">
+								<p class="mb-0 text-prune">Mot de Passe</p>
+							</div>
+							<div class="col-sm-9">
+								<p class="text-muted mb-0">{{user.password}}</p>
+							</div>
+						</div>
+						<div class="d-flex justify-content-center ">
+							<div class="btn-group">
+								<button type="button" class="btn dropdown-toggle bg-white text-white" data-bs-toggle="dropdown" aria-expanded="false"></button>
+								<ul class=" p-4 dropdown-menu">
+									<li>
+										<h3 class="dropdown-item bg-prune text-white">Type de buveur</h3>
+									</li>
+									<li>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Petit joueur
+											</label>
+										</div>
+									</li>
+									<li>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Amateur
+											</label>
+										</div>
+									</li>
+									<li>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Professionnel
+											</label>
+										</div>
+									</li>
+									<li>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Vétéran
+											</label>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+			<a href="{{ path('app_user_edit', {'id': user.id}) }}">
+				<div class="d-flex justify-content-center ">
+					<form method="post" action="app_user_edit">
+						<button type="submit" id="btnupdate" class="btn text-white mb-3 mt-3 bg-prune">Mettre à jour</button>
+					</form>
+				</div>
+			</a>
+			<div class="d-flex justify-content-center ">
+				{{ include('user/_delete_form.html.twig') }}
+			</div>
+
+		</div>
+	</div>
+
+	{# <a href="{{ path('app_user_index') }}">back to list</a> #}
+
+
+{% endblock %}
