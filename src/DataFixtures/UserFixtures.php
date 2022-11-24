@@ -14,49 +14,49 @@ class UserFixtures extends Fixture
             "email" => "admin@admin.fr",
             "password" => "admin",
             "avatar" => "",
-            "role" => ["admin"]
+            "role" => ["ROLE_ADMIN"]
         ],
         [
             "pseudo" => "user",
             "email" => "user@user.fr",
             "password" => "Fraise2090",
             "avatar" => "",
-            "role" => ["user"]
+            "role" => ["ROLE_USER"]
         ],
         [
             "pseudo" => "lalalou",
             "email" => "lalou@lala.fr",
             "password" => "Fraise2090",
             "avatar" => "",
-            "role" => ["user"]
+            "role" => ["ROLE_USER"]
         ],
         [
             "pseudo" => "jeanne",
             "email" => "lala@lala.fr",
             "password" => "Fraise2090",
             "avatar" => "",
-            "role" => ["user"]
+            "role" => ["ROLE_USER"]
         ],
         [
             "pseudo" => "jeanne",
             "email" => "jeanne@jeanne.fr",
             "password" => "password",
             "avatar" => "",
-            "role" => ["user"]
+            "role" => ["ROLE_USER"]
         ],
         [
             "pseudo" => "laura",
             "email" => "patoche@patoche.fr",
             "password" => "Fraise2090",
             "avatar" => "",
-            "role" => ["user"]
+            "role" => ["ROLE_USER"]
         ],
         [
             "pseudo" => "michel",
             "email" => "michel@michel.fr",
             "password" => "password",
             "avatar" => "",
-            "role" => ["user"]
+            "role" => ["ROLE_USER"]
         ]
     ];
 
