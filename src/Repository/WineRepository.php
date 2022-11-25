@@ -15,7 +15,10 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Wine[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class WineRepository extends ServiceEntityRepository
+
 {
+    public const TABLE = 'wine';
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Wine::class);
@@ -38,6 +41,15 @@ class WineRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+   
+        // public function Stock()
+        // {
+
+        //     $query = "SELECT sum(stock) FROM " . self::TABLE ;
+
+        //     return $this->query($query)->fetchAll();
+        // }
 
 //    /**
 //     * @return Wine[] Returns an array of Wine objects

@@ -1,0 +1,117 @@
+<div
+		class="bg-lightPrimary">
+		{# header #}
+		<div class="bg-lightSecondary pt-4 w-100" style="height: 180px">
+			<div style="border-bottom:solid; border-bottom-color:var(--prune)">
+				<h1 class="pt-2 ps-2 mt-5 mx-5 text-prune" style="letter-spacing:5px">
+					Ma cave
+				</h1>
+			</div>
+		</div>
+
+
+		{# barre de recherche #}
+		<div class="py-5">
+			<div class="d-flex justify-content-around">
+				<form method="POST" action="cellarByDomain" class="d-flex w-75 gap-5">
+					<input
+					type="text" class="form-control" placeholder="Rechercher son vin" value="" name="wine"/>
+
+					{# bouton search #}
+					<button class="btn btn-prune d-none d-md-block " type="submit">
+						RECHERCHE
+					</button>
+					<button class=" btn btn-prune d-block d-md-none rounded " type="submit">
+						<img src="/assets/images/icones/Loupe.svg"/></button>
+				</button>
+				{# bouton filtre #}
+				<button class="btn btn-prune d-none d-md-block " type="button" data-bs-toggle="modal" data-bs-target="#modal">
+					FILTRES
+				</button>
+				<button class=" btn btn-prune d-block d-md-none rounded " type="button" data-bs-toggle="modal" data-bs-target="#modal">
+					<img src="/assets/images/icones/Filtres.svg"/></button>
+			</form>
+		</div>
+	</div>
+	{% include 'Component/_cardWine.html.twig' %}
+</div>
+
+{# ****************** MODAL FILTRES ******************** #}
+<div class="container text-dark">
+
+	<div class="modal blur" id="modal">
+		<div class=" modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header  text-center">
+					<h2>Filtres</h2>
+					<div class="btn-close" data-bs-dismiss="modal"></div>
+				</div>
+				<div class="modal-body">
+					<form class="form" method="POST" action="filteredCellar">
+						<select name="country" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Pays</option>
+							{# {% for country in countries %} #}
+								{# <option  #}
+                                {# value="{{country.id}}" #}
+                                {# > #}
+                                {# {{country.label}} #}
+                                {# </option> #}
+							{# {% endfor %} #}
+						</select>
+
+						<select name="region" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Région</option>
+							{# {% for region in regions %} #}
+								{# <option #}
+                                 {# value="{{region.id}}" #}
+                                 {# > #}
+                                 {# {{region.label}} #}
+                                 {# </option> #}
+							{# {% endfor %} #}
+						</select>
+						<select name="appellation" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Appellation</option>
+							{# {% for appellation in appellations %}
+								<option  #}
+                                {# value="{{appellation.id}}" #}
+                                {# > #}
+                                {# {{appellation.label}} #}
+                                {# </option>
+							{% endfor %} #}
+
+						</select>
+
+						<select name="color" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Couleur</option>
+							{# {% for color in colors %}
+								<option  #}
+                                {# value="{{color.id}}" #}
+                                {# > #}
+                                {# {{color.label}} #}
+                                {# </option>
+							{% endfor %} #}
+						</select>
+
+						<select name="type" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Type</option>
+{# 
+							{% for type in types %}
+								<option  #}
+                                {# value="{{type.id}}" #}
+                                {# > #}
+                                {# {{type.label}}
+									{{type.id}} #}
+
+
+								{# </option>
+
+
+							{% endfor %} #}
+						</select>
+						<button type="submit" class="btn btn-prune w-100  btn-sm">Filtrer</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div></div>{# ****************** END modal filtres ******************** #}
