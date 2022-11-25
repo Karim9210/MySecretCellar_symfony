@@ -4,7 +4,6 @@
 {% endblock %}
 
 {% block content %}
-
 	<section class="d-flex flex-column-reverse ">
 		<div class="macaveEnChiffre bg-lightPrimary d-flex flex-column-reverse">
 			<div
@@ -29,7 +28,7 @@
 					<div class="d-flex flex-column justify-content-center flex-sm-row mt-2">
 						<div class="d-flex align-self-center">
 							<img src=
-							{# "{{ randWine['picture'] ?? '/assets/images/bouteille.svg'}}" #}
+							{# "{{ randWine['picture'] ?? '{{ asset('build/images/bouteille.svg') }}" #}
 							 style="object-fit:contain" width="100" height="200"/>
 						</div>
 
@@ -87,28 +86,28 @@
 					<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
 						<div class="carousel-inner w-100 h-100">
 							<div class="carousel-item active w-100 h-100 bg-danger">
-								<img src="assets/images/photosAccueil/myCellarRandom-1.jpg" class="d-block w-100" alt="myCellarRandom-1">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-1.jpg') }}" class="d-block w-100" alt="myCellarRandom-1">
 							</div>
 							<div class="carousel-item">
-								<img src="assets/images/photosAccueil/myCellarRandom-2.jpg" class="d-block w-100" alt="myCellarRandom-2">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-2.jpg')}}" class="d-block w-100" alt="myCellarRandom-2">
 							</div>
 							<div class="carousel-item">
-								<img src="assets/images/photosAccueil/myCellarRandom-4.jpg" class="d-block w-100" alt="myCellarRandom-4">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-4.jpg')}}" class="d-block w-100" alt="myCellarRandom-4">
 							</div>
 							<div class="carousel-item">
-								<img src="assets/images/photosAccueil/myCellarRandom-5.jpg" class="d-block w-100" alt="myCellarRandom-5">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-5.jpg')}}" class="d-block w-100" alt="myCellarRandom-5">
 							</div>
 							<div class="carousel-item">
-								<img src="assets/images/photosAccueil/myCellarRandom-6.jpg" class="d-block w-100" alt="myCellarRandom-6">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-6.jpg')}}" class="d-block w-100" alt="myCellarRandom-6">
 							</div>
 							<div class="carousel-item">
-								<img src="assets/images/photosAccueil/myCellarRandom-7.jpg" class="d-block w-100" alt="myCellarRandom-7">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-7.jpg')}}" class="d-block w-100" alt="myCellarRandom-7">
 							</div>
 							<div class="carousel-item">
-								<img src="assets/images/photosAccueil/myCellarRandom-8.jpg" class="d-block w-100" alt="myCellarRandom-8">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-8.jpg')}}" class="d-block w-100" alt="myCellarRandom-8">
 							</div>
 							<div class="carousel-item">
-								<img src="assets/images/photosAccueil/myCellarRandom-10.jpg" class="d-block w-100" alt="myCellarRandom-10">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-10.jpg')}}" class="d-block w-100" alt="myCellarRandom-10">
 							</div>
 						</div>
 					</div>

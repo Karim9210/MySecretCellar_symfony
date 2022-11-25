@@ -1,33 +1,35 @@
 {% block card %}
+{{dump(wines)}}
 	<div class="d-flex flex-column gap-4 justify-content-around pb-5 ">
-		{# {% for wine in wines %}
-			{% if wine.color_id is same as 1 %}
+		{% for wine in wines %}
+			{% if wine.color.id is same as 1 %}
 				{% set color = '#893a2c' %}
-			{% elseif wine.color_id is same as 2 %}
+			{% elseif wine.color.id is same as 2 %}
 				{% set color = '#ffe675' %}
-			{% elseif wine.color_id is same as 3 %}
+			{% elseif wine.color.id is same as 3 %}
 				{% set color = '#eabca9' %}
-			{% endif %} #}
-			<a class="w-100 d-flex justify-content-center" 
-			{# href="showWine?id={{wine.id}}" #}
-			>
+			{% endif %}
+			
+			<a class="w-100 d-flex justify-content-center"
+			 href="{{ path('app_wine_show',{ id: wine.id }) }}"
+			 >
 				<div class="bg-light border ps-3 rounded w-75 d-flex flex-column flex-md-row justify-content-around border  border-secondary">
 					<div class="d-flex gap-5">
 						<div class="rounded-circle my-3" style="border : solid 4px
-						{# {{color}} #}
+						{{color}}
 						">
 							<img class="rounded-circle" style=" object-fit:contain" 
-							{# src="{{wine.picture}}"  #}
+							src="{{wine.picture}}" 
 							height="100" width="100"/>
 						</div>
 
 
 						<div class="d-flex flex-column align-self-center">
 							<h3 class=" responsive-font-example mb-0 text-prune">
-							{# {{wine.domaine|title}} #}
+							{{wine.domaine}}
 							</h3>
 							<p class="mt-2 text-prune">
-							{# {{wine.vintage}} #}
+							{{wine.vintage}}
 							</p>
 						</div>
 					</div>
@@ -41,11 +43,11 @@
 						</div>
 						<p class="text-prune mt-2">
 							Stock |
-							{# {{wine.stock}} #}
+							{{wine.stock}}
 							</p>
 					</div>
 				</div>
-			{# {% endfor %} #}
-		</div>
-	</a>
+			</a>
+		{% endfor %}
+	</div>
 {% endblock %}

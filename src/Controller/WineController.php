@@ -17,7 +17,8 @@ class WineController extends AbstractController
     public function index(WineRepository $wineRepository): Response
     {
         return $this->render('wine/index.html.twig', [
-            'wines' => $wineRepository->findAll(),
+            'wines' => $wineRepository->findAll()
+
         ]);
     }
 
@@ -43,6 +44,7 @@ class WineController extends AbstractController
     #[Route('/{id}', name: 'app_wine_show', methods: ['GET'])]
     public function show(Wine $wine): Response
     {
+
         return $this->render('wine/show.html.twig', [
             'wine' => $wine,
         ]);

@@ -55,13 +55,13 @@
 					<form class="form" method="POST" action="filteredCellar">
 						<select name="country" class="form-select my-3" aria-label="Default select example">
 							<option selected value="">Pays</option>
-							{# {% for country in countries %} #}
-								{# <option  #}
-                                {# value="{{country.id}}" #}
-                                {# > #}
-                                {# {{country.label}} #}
-                                {# </option> #}
-							{# {% endfor %} #}
+							{# {% for country in countries %}
+								<option 
+                                value="{{country.id}}"
+                                >
+                                {{country.label}}
+                                </option>
+							{% endfor %} #}
 						</select>
 
 						<select name="region" class="form-select my-3" aria-label="Default select example">
