@@ -44,7 +44,9 @@ class WineController extends AbstractController
     #[Route('/show/{id}', name: 'app_wine_show', methods: ['GET'])]
     public function show(Wine $wine): Response
     {
-
+        // if (empty($this->getId())) {
+        //     return $this->render('wine/emptyCave.html.twig');
+        // }
         return $this->render('wine/show.html.twig', [
             'wine' => $wine,
         ]);
