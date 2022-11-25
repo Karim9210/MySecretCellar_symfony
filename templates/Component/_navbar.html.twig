@@ -12,7 +12,7 @@
 
 			</div>
 
-			<ul class="navbar-nav pt-1 gap-5 d-flex  justify-content-md-evenly w-100 ">
+			<ul class="navbar-nav pt-1 gap-5 d-flex  justify-content-md-betwen w-100 ">
 				<div class="d-flex flex-column flex-sm-row">
 					<li class="nav-item active">
 						<a href="/" class="nav-link ">
@@ -35,29 +35,31 @@
 						</a>
 					</li>
 				</div>
-				<div>
-					<li class="nav-item active ps-5 pt-2 d-none d-md-block ">
-						<p class="text-lightPrimary ml-4">La cave de
-							{{ app.user.userIdentifier }}
-						</p>
-					</li>
-				</div>
-				<div>
-					<li class="nav-item active d-none d-md-block ">
-						<a href="{{ path('app_logout') }}" class="nav-link ">
-							<p class="text-lightPrimary">LOGOUT</p>
-						</a>
-					</li>
-				</div>
-			</ul>
+				{% if app.user %}
+					<div>
+						<li class="nav-item active ps-5 pt-2 d-none d-md-block ">
+							<p class="text-lightPrimary ml-4">La cave de
+								{{ app.user.userIdentifier }}
+							</p>
+						</li>
+					</div>
+					<div>
+						<li class="nav-item active d-none d-md-block ">
+							<a href="{{ path('app_logout') }}" class="nav-link ">
+								<p class="text-lightPrimary">LOGOUT</p>
+							</a>
+						</li>
+					</div>
+				</ul>
 
-			<div class="h-50 d-flex flex-column-reverse justify-content-end align-items-end pb-5">
-				<a href="logout" class="nav-link ">
-					<button type="button" class="logout d-sm-none rounded h-2">
-						<p class="text-center p-2 mb-0 bg-lightPrimary text-prune ">LOG OUT</p>
-					</button>
-				</a>
-			</div>
+				<div class="h-50 d-flex flex-column-reverse justify-content-end align-items-end pb-5">
+					<a href="logout" class="nav-link d-sm-none ">
+
+						<i class="bi bi-box-arrow-right text-lightPrimary" style="font-size: 2em"></i>
+
+					</a>
+				</div>
+			{% endif %}
 
 		</div>
 		<div class="ms-auto">
