@@ -5,6 +5,11 @@ namespace App\Controller;
 use App\Entity\Wine;
 use App\Form\WineType;
 use App\Repository\WineRepository;
+use App\Repository\CountryRepository;
+use App\Repository\RegionRepository;
+use App\Repository\AppellationRepository;
+use App\Repository\ColorRepository;
+use App\Repository\TypeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +19,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class WineController extends AbstractController
 {
     #[Route('/', name: 'app_wine_index', methods: ['GET'])]
-    public function index(WineRepository $wineRepository): Response
-    {
-        return $this->render('wine/index.html.twig', [
-            'wines' => $wineRepository->findAll()
+    public function index(
+        WineRepository $wineRepository,
+        CountryRepository $countryRepository,
+        RegionRepository $regionRepository,
+        AppellationRepository $appellationRepo,
+        ColorRepository $colorRepository,
+        TypeRepository $typeRepository
+    ): Response {
 
+
+        return $this->render('wine/index.html.twig', [
+            'wines' => $wineRepository->findAll(),
+            'countries' => $countryRepository->findAll(),
+            'regions' => $regionRepository->findAll(),
+            'appellations' => $appellationRepo->findAll(),
+            'colors' => $colorRepository->findAll(),
+            'types' => $typeRepository->findAll(),
         ]);
     }
 
