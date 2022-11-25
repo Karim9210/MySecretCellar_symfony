@@ -28,8 +28,10 @@ class WineController extends AbstractController
         TypeRepository $typeRepository
     ): Response {
 
+        $user = $this->getUser();
 
         return $this->render('wine/index.html.twig', [
+            'user' => $user,
             'wines' => $wineRepository->findAll(),
             'countries' => $countryRepository->findAll(),
             'regions' => $regionRepository->findAll(),

@@ -1,4 +1,3 @@
-
 <div
 	class="bg-lightPrimary">
 	{# header #}
@@ -37,81 +36,69 @@
 </div>
 
 {# ****************** MODAL FILTRES ******************** #}
-	<div class="container text-dark">
-		<div class="modal blur" id="modal">
-			<div class=" modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header  text-center">
-						<h2>Filtres</h2>
-						<div class="btn-close" data-bs-dismiss="modal"></div>
-					</div>
-					<div class="modal-body">
-						<form class="form" method="POST" action="filteredCellar">
-							<select name="country" class="form-select my-3" aria-label="Default select example">
-								<option selected value="">Pays</option>
-								{% for country in countries %}
-									<option 
-									value="{{country.id}}"
-									>
+<div class="container text-dark">
+	<div class="modal blur" id="modal">
+		<div class=" modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header  text-center">
+					<h2>Filtres</h2>
+					<div class="btn-close" data-bs-dismiss="modal"></div>
+				</div>
+				<div class="modal-body">
+					<form class="form" method="POST" action="filteredCellar">
+						<select name="country" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Pays</option>
+							{% for country in countries %}
+								<option value="{{country.id}}">
 									{{country.labelCountry}}
-									</option>
-								{% endfor %}
-							</select>
+								</option>
+							{% endfor %}
+						</select>
 
-							<select name="region" class="form-select my-3" aria-label="Default select example">
-								<option selected value="">Région</option>
-								{% for region in regions %}
-									<option
-									value="{{region.id}}"
-									>
+						<select name="region" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Région</option>
+							{% for region in regions %}
+								<option value="{{region.id}}">
 									{{region.labelRegion}}
-									</option>
-								{% endfor %}
-							</select>
-							<select name="appellation" class="form-select my-3" aria-label="Default select example">
-								<option selected value="">Appellation</option>
-								{% for appellation in appellations %}
-									<option 
-									value="{{appellation.id}}"
-									>
+								</option>
+							{% endfor %}
+						</select>
+						<select name="appellation" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Appellation</option>
+							{% for appellation in appellations %}
+								<option value="{{appellation.id}}">
 									{{appellation.labelAppellation}}
-									</option>
-								{% endfor %}
+								</option>
+							{% endfor %}
 
-							</select>
+						</select>
 
-							<select name="color" class="form-select my-3" aria-label="Default select example">
-								<option selected value="">Couleur</option>
-								{% for color in colors %}
-									<option 
-									value="{{color.id}}"
-									>
+						<select name="color" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Couleur</option>
+							{% for color in colors %}
+								<option value="{{color.id}}">
 									{{color.labelColor}}
-									</option>
-								{% endfor %}
-							</select>
+								</option>
+							{% endfor %}
+						</select>
 
-							<select name="type" class="form-select my-3" aria-label="Default select example">
-								<option selected value="">Type</option>
+						<select name="type" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Type</option>
 
-								{% for type in types %}
-									<option 
-									value="{{type.id}}"
-									>
+							{% for type in types %}
+								<option value="{{type.id}}">
 									{{type.labelType}}
-										
 
 
-									</option>
+								</option>
 
 
-								{% endfor %}
-							</select>
-							<button type="submit" class="btn btn-prune w-100  btn-sm">Filtrer</button>
-						</form>
-					</div>
+							{% endfor %}
+						</select>
+						<button type="submit" class="btn btn-prune w-100  btn-sm">Filtrer</button>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>{# ****************** END modal filtres ******************** #}
+</div></div>{# ****************** END modal filtres ******************** #}
