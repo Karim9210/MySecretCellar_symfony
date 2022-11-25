@@ -15,7 +15,6 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Wine[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class WineRepository extends ServiceEntityRepository
-
 {
     public const TABLE = 'wine';
 
@@ -42,7 +41,7 @@ class WineRepository extends ServiceEntityRepository
         }
     }
 
-   
+
         // public function Stock()
         // {
 
