@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20221124142022 extends AbstractMigration
+final class Version20221128093735 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -26,7 +26,7 @@ final class Version20221124142022 extends AbstractMigration
         $this->addSql('CREATE TABLE grape_variety (id INT AUTO_INCREMENT NOT NULL, label VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE region (id INT AUTO_INCREMENT NOT NULL, label VARCHAR(45) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE type (id INT AUTO_INCREMENT NOT NULL, label VARCHAR(45) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, pseudo VARCHAR(255) NOT NULL, avatar LONGBLOB DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, pseudo VARCHAR(255) NOT NULL, avatar VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE wine (id INT AUTO_INCREMENT NOT NULL, color_id INT NOT NULL, country_id INT DEFAULT NULL, region_id INT DEFAULT NULL, appellation_id INT DEFAULT NULL, type_id INT DEFAULT NULL, domaine VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, comment LONGTEXT DEFAULT NULL, ranking INT DEFAULT NULL, price DOUBLE PRECISION DEFAULT NULL, stock INT DEFAULT NULL, value DOUBLE PRECISION DEFAULT NULL, cellar_location VARCHAR(255) DEFAULT NULL, picture VARCHAR(255) DEFAULT NULL, drink_before INT DEFAULT NULL, vintage INT DEFAULT NULL, purchase_date DATE DEFAULT NULL, INDEX IDX_560C64687ADA1FB5 (color_id), INDEX IDX_560C6468F92F3E70 (country_id), INDEX IDX_560C646898260155 (region_id), INDEX IDX_560C64687CDE30DD (appellation_id), INDEX IDX_560C6468C54C8C93 (type_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE wine_grape_variety (wine_id INT NOT NULL, grape_variety_id INT NOT NULL, INDEX IDX_A741197828A2BD76 (wine_id), INDEX IDX_A7411978ED00A18A (grape_variety_id), PRIMARY KEY(wine_id, grape_variety_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE wine_wine_pairing (wine_id INT NOT NULL, wine_pairing_id INT NOT NULL, INDEX IDX_DBD77C4C28A2BD76 (wine_id), INDEX IDX_DBD77C4CF8AD6CE7 (wine_pairing_id), PRIMARY KEY(wine_id, wine_pairing_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

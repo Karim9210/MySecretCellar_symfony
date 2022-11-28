@@ -1,9 +1,8 @@
 {% extends 'layout.html.twig' %}
 
-
 {% block content %}
-
-	{% if wines|length <1 %}
+{# {{dump(user)}} #}
+	{% if user.wines|length is same as (0) %}
 		{% include "Component/_emptyCave.html.twig" %}
 	{% else %} 
 		{% include "Component/_notEmptyCave.html.twig" %}
