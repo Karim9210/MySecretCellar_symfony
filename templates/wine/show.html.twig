@@ -3,66 +3,8 @@
 {% block title %}Wine{% endblock %}
 
 {% block body %}
-    {# <h1>Wine</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ wine.id }}</td>
-            </tr>
-            <tr>
-                <th>Domaine</th>
-                <td>{{ wine.domaine }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ wine.description }}</td>
-            </tr>
-            <tr>
-                <th>Comment</th>
-                <td>{{ wine.comment }}</td>
-            </tr>
-            <tr>
-                <th>Ranking</th>
-                <td>{{ wine.ranking }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ wine.price }}</td>
-            </tr>
-            <tr>
-                <th>Stock</th>
-                <td>{{ wine.stock }}</td>
-            </tr>
-            <tr>
-                <th>Value</th>
-                <td>{{ wine.value }}</td>
-            </tr>
-            <tr>
-                <th>CellarLocation</th>
-                <td>{{ wine.cellarLocation }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ wine.picture }}</td>
-            </tr>
-            <tr>
-                <th>DrinkBefore</th>
-                <td>{{ wine.drinkBefore }}</td>
-            </tr>
-            <tr>
-                <th>Vintage</th>
-                <td>{{ wine.vintage }}</td>
-            </tr>
-            <tr>
-                <th>PurchaseDate</th>
-                <td>{{ wine.purchaseDate ? wine.purchaseDate|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table> #}
     {% block content %}
-    {# {{dump(wine, wine.winePairing)}} #}
+ 
 
 	<div class="bg-lightSecondary pt-4 w-100" style="height: 180px">
 		<div style="border-bottom:solid; border-bottom-color:var(--prune)">
@@ -179,7 +121,7 @@
 					<p class="text-prune">Valeur :
 						{{wine.value}}€</p>
 					<p class="text-prune">Date d'achat :
-						{{wine.purchaseDate}}</p>
+						{{winePurchaseDate}}</p>
 					<p>
 						<strong>Emplacement dans ma cave :
 						</strong>

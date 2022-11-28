@@ -16,8 +16,8 @@
 			</div>
 		</div>
 		<div class="bg-primaryLight p-5 ">
-			{{ form_start(form) }}
-             {{ form_row(form.user) }} 
+					{{ form_start(form) }}
+             {# {{ form_row(form.user) }}  #}
 				<div class=" p-3 border-start border-end shadow-lg text-prune block2" enctype="multipart/form-data">
 				<!-- ********************************** sous-block1 ********************************* -->
 
@@ -126,16 +126,14 @@
 				</div>
 				<!-- FIN div img_+_input  -->
 			{# <!-- ----------------------input vintage en long -----------------------------> #}
-				{# <div
+				<div
               class="sous_image d-flex flex-column" id="div_vintage">
+              <label for="cepage" name="cepage"class="form-label text-start p-1 mb-0 mt-3"></label>
               {{ form_row(form.grapeVariety) }}
-              <label for="cepage" name="cepage"class="form-label text-start p-1 mb-0 mt-3">Cépage :</label>
-              <select class="form-select form-select-sm mt-4" aria-lasbel="Default select example">
+              {# <select class="form-select form-select-sm mt-4" aria-lasbel="Default select example">
                   <option selected>Choisir le cépage</option>
-                  <option selected>Choisir le cépage</option>
-                  <option selected>Choisir le cépage</option>
-              </select>
-          </div> #}
+              </select> #}
+          </div>
 			</div>
 
 
@@ -219,17 +217,17 @@
 		<div class="row ss-block3 mx-auto w-100 px-2">
 			<div class="row ss-ss-block2 p-0">
 				<div class="mb-3">
-					<label for="rank" class="form-label text-start p-1 mb-0">Ranking :</label>
+					<label for="rank" class="form-label text-start p-1 mb-0"></label>
 					    {{ form_row(form.ranking) }}
                     <div class="etoile">
 						<div class="input_etoile mb-1 ps-3" id="input_etoile1">
-							<input type="radio" name="rank">
+							{# <input type="radio" name="rank"> #}
 							<span class="etoile ms-1">
 								<i class="bi bi-star-fill text-warning"></i>
 							</span>
 						</div>
 						<div class=" input_etoile mb-1 ps-3" id="input_etoile2">
-							<input type="radio" name="rank">
+							{# <input type="radio" name="rank"> #}
 							<span class="etoile ms-1">
 								<i class="bi bi-star-fill text-warning"></i>
 							</span>
@@ -238,7 +236,7 @@
 							</span>
 						</div>
 						<div class=" input_etoile mb-1 ps-3" id="input_etoile3">
-							<input type="radio" name="rank">
+							{# <input type="radio" name="rank"> #}
 							<span class="etoile ms-1">
 								<i class="bi bi-star-fill text-warning"></i>
 							</span>
@@ -250,7 +248,7 @@
 							</span>
 						</div>
 						<div class=" input_etoile mb-1 ps-3" id="input_etoile4">
-							<input type="radio" name="rank">
+							{# <input type="radio" name="rank"> #}
 							<span class="etoile ms-1">
 								<i class="bi bi-star-fill text-warning"></i>
 							</span>
@@ -265,7 +263,7 @@
 							</span>
 						</div>
 						<div class=" input_etoile mb-1 ps-3" id="input_etoile5">
-							<input type="radio" name="rank">
+							{# <input type="radio" name="rank"> #}
 							<span class="etoile ms-1">
 								<i class="bi bi-star-fill text-warning"></i>
 							</span>

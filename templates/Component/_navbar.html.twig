@@ -11,26 +11,25 @@
 				<p class="text-lightPrimary">MENU</p>
 
 			</div>
-
 			<ul class="navbar-nav pt-1 gap-5 d-flex  justify-content-md-betwen w-100 ">
 				<div class="d-flex flex-column flex-sm-row">
 					<li class="nav-item active">
-						<a href="/" class="nav-link ">
+						<a href="{{ path('app_home') }}" class="nav-link ">
 							<p class="text-lightPrimary">ACCUEIL</p>
 						</a>
 					</li>
 					<li class="nav-item active">
-						<a href="wine" class="nav-link ">
+						<a href="{{ path('app_wine_index') }}" class="nav-link ">
 							<p class="text-lightPrimary">MA CAVE</p>
 						</a>
 					</li>
 					<li class="nav-item active">
-						<a href="wine/new" class="nav-link ">
+						<a href="{{ path('app_wine_new') }}" class="nav-link ">
 							<p class="text-lightPrimary">AJOUTER UN VIN</p>
 						</a>
 					</li>
 					<li class="nav-item active">
-						<a href="profil" class="nav-link">
+						{# <a href="{{ path('app_user_show', {id:user.id}) }}" class="nav-link"> #}
 							<p class="text-lightPrimary">MON PROFIL</p>
 						</a>
 					</li>
