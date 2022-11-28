@@ -2,18 +2,23 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
+use Serializable;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -37,6 +42,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
+
+    #[Vich\UploadableField(mapping: 'avatar_file', fileNameProperty: 'avatar')]
+    private ?File $avatarFile = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private \DateTimeInterface $updatedAt;
 
     #[ORM\ManyToMany(targetEntity: Wine::class, mappedBy: 'user')]
     private Collection $wines;
@@ -135,12 +146,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAvatar(): string
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
 
-    public function setAvatar(string $avatar): self
+    public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
 
@@ -172,5 +183,62 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+
+    public function setAvatarFile(File $image = null): void
+    {
+        $this->avatarFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatarFile;
+    }
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt(): DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @return  self
+     */
+    public function setUpdatedAt(DateTimeInterface $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function serialize()
+    {
+
+        return serialize(array(
+            $this->id,
+            $this->pseudo,
+            $this->password,
+            $this->avatar,
+
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+
+        list(
+            $this->id,
+            $this->pseudo,
+            $this->password,
+            $this->avatar,
+        ) = unserialize($serialized);
     }
 }

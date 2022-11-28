@@ -29,39 +29,37 @@
 						</a>
 					</li>
 					<li class="nav-item active">
-						<a href="{{ path('app_user_show', {id:user.id}) }}" class="nav-link">
+						<a href="{{ path('app_user_show', {id:app.user.id}) }}" class="nav-link">
 							<p class="text-lightPrimary">MON PROFIL</p>
-						</a>
+						</li>
 					</li>
-				</div>
-				{% if app.user %}
-					<div>
-						<li class="nav-item active ps-5 pt-2 d-none d-md-block ">
-							<p class="text-lightPrimary ml-4">La cave de
-								{{ app.user.userIdentifier|capitalize }}
-							</p>
-						</li>
-					</div>
-					<div>
-						<li class="nav-item active d-none d-md-block ">
-							<a href="{{ path('app_logout') }}" class="nav-link ">
-								<p class="text-lightPrimary">LOGOUT</p>
-							</a>
-						</li>
-					</div>
-				</ul>
-
-				<div class="h-50 d-flex flex-column-reverse justify-content-end align-items-end pb-5">
-					<a href="logout" class="nav-link d-sm-none ">
-
-						<i class="bi bi-box-arrow-right text-lightPrimary" style="font-size: 2em"></i>
-
-					</a>
-				</div>
-			{% endif %}
-
+				</a>
+			</li>
 		</div>
-		<div class="ms-auto">
-			<img src={{ asset('build/images/secretCellarLogo.svg') }} height="70"></div>
-	</nav>
-{% endblock %}
+		{% if app.user %}
+			<div>
+				<li class="nav-item active ps-5 pt-2 d-none d-md-block ">
+					<p class="text-lightPrimary ml-4">La cave de
+						{{ app.user.userIdentifier|capitalize }}
+					</p>
+				</li>
+			</div>
+			<div>
+				<li class="nav-item active d-none d-md-block ">
+					<a href="{{ path('app_logout') }}" class="nav-link ">
+						<p class="text-lightPrimary">LOGOUT</p>
+					</a>
+				</li>
+			</div>
+		</ul>
+
+		<div class="h-50 d-flex flex-column-reverse justify-content-end align-items-end pb-5">
+			<a href="logout" class="nav-link d-sm-none ">
+
+				<i class="bi bi-box-arrow-right text-lightPrimary" style="font-size: 2em"></i>
+
+			</a>
+		</div>
+	{% endif %}
+</div>
+<div class="ms-auto"><img src={{ asset('build/images/secretCellarLogo.svg') }} height="70"></div></nav>{% endblock %}

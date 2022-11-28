@@ -19,10 +19,10 @@
 			<div class="col-lg-8 w-50">
 				<div class="card mb-4 ">
 					<div class="card-body ">
-						<hr>
+
 						<div class="row">
 							<div class="col-sm-3">
-								<img src="{{ user.avatar }}" class="rounded-circle" style="width: 150px;" alt="Avatar"/>
+								<img src="{{ vich_uploader_asset( user ) }}" class="rounded-circle" style="width: 150px;" alt="{{ user.pseudo }}"/>
 							</div>
 
 						</div>
@@ -32,7 +32,7 @@
 								</p>
 							</div>
 							<div class="col-sm-9 mt-2">
-								<p class="text-muted mb-0">{{user.pseudo}}</p>
+								<p class="text-muted mb-0">{{app.user.pseudo}}</p>
 							</div>
 						</div>
 						<hr>
@@ -41,18 +41,11 @@
 								<p class="mb-0 text-prune">Email</p>
 							</div>
 							<div class="col-sm-9">
-								<p class="text-muted mb-0">{{user.email}}</p>
+								<p class="text-muted mb-0">{{app.user.email}}</p>
 							</div>
 						</div>
 						<hr>
-						<div class="row">
-							<div class="col-sm-3">
-								<p class="mb-0 text-prune">Mot de Passe</p>
-							</div>
-							<div class="col-sm-9">
-								<p class="text-muted mb-0">{{user.password}}</p>
-							</div>
-						</div>
+
 						<div class="d-flex justify-content-center ">
 							<div class="btn-group">
 								<button type="button" class="btn dropdown-toggle bg-white text-white" data-bs-toggle="dropdown" aria-expanded="false"></button>
@@ -100,12 +93,9 @@
 				</div>
 			</div>
 
-
 			<a href="{{ path('app_user_edit', {'id': user.id}) }}">
 				<div class="d-flex justify-content-center ">
-					<form method="post" action="app_user_edit">
-						<button type="submit" id="btnupdate" class="btn text-white mb-3 mt-3 bg-prune">Mettre à jour</button>
-					</form>
+					<button type="submit" id="btnupdate" class="btn text-white mb-3 mt-3 bg-prune">Mettre à jour</button>
 				</div>
 			</a>
 			<div class="d-flex justify-content-center ">
@@ -113,5 +103,4 @@
 			</div>
 		</div>
 	</div>
-	{# <a href="{{ path('app_user_index') }}">back to list</a> #}
 {% endblock %}
