@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class UserType extends AbstractType
 {
@@ -18,9 +20,12 @@ class UserType extends AbstractType
             ->add('pseudo')
             ->add('avatar')
             ->add('wines')
-        ;
+            ->add('avatarFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+            ]);
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
