@@ -77,12 +77,11 @@ class WineController extends AbstractController
         TypeRepository $typeRepository
     ): Response {
 
-        $userId = $this->getUser();
-        $user = $userRepository->find($userId);
-        $id = $user->getId();
+        /** @var User */
+        $user = $this->getUser();
 
-        $winesfiltered = $winesfiltered->filterWines($_POST, $id);
-
+        dump($_POST);
+        $winesfiltered = $winesfiltered->filterWines($_POST, $user);
         return $this->render('wine/filtered_wines.html.twig', [
             'winesfiltered' => $winesfiltered,
             'countries' => $countryRepository->findAll(),
@@ -90,6 +89,7 @@ class WineController extends AbstractController
             'appellations' => $appellationRepo->findAll(),
             'colors' => $colorRepository->findAll(),
             'types' => $typeRepository->findAll(),
+
         ]);
     }
 

@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Wine;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Country;
+use App\Entity\User;
 
 /**
  * @extends ServiceEntityRepository<Wine>
@@ -75,34 +77,17 @@ class WineRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    public function filterWines(array $filters, int $id): array|int|object
+    public function filterWines(array $filters, User $user): array
     {
-
-        $conn = $this->getEntityManager()->getConnection();
-
-        $queryFilter = 'SELECT * FROM wine w';
-        $queryParams = '';
-        foreach ($filters as $filter => $value) {
-            if (!empty($value)) {
-                if (empty($queryParams)) {
-                    $queryParams .= 'w.' . $filter . '_id=' . $value;
-                } else {
-                    $queryParams .= ' AND ' . 'w.' . $filter . '_id=' . $value;
-                }
-            }
+        $qb = $this->createQueryBuilder('w')->where(':user MEMBER OF w.user')
+            ->setParameters(['user' => $user]);
+        if (!empty($filters['country'])) {
+            $qb->andWhere('w.country = :country')->setParameter('country', $filters['country']);
+        }
+        if (!empty($filters['color'])) {
+            $qb->andWhere('w.color = :color')->setParameter('color', $filters['color']);
         }
 
-        if (!empty($queryParams)) {
-            $queryFilter .= " JOIN wine_user on wine_user.wine_id = w.id 
-            JOIN user on wine_user.user_id = user.id 
-            WHERE user.id = " . $id . " AND " . $queryParams;
-        }
-        dump($queryFilter);
-
-        $stmt = $conn->prepare($queryFilter);
-        $resultSet = $stmt->executeQuery();
-
-        // returns an array of arrays (i.e. a raw data set)
-        return $resultSet->fetchAllAssociative();
+        return $qb->getQuery()->getResult();
     }
 }
