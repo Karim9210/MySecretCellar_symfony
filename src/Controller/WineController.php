@@ -33,6 +33,8 @@ class WineController extends AbstractController
         ColorRepository $colorRepository,
         TypeRepository $typeRepository
     ): Response {
+
+         /** @var User */
         $user = $this->getUser();
 
         $form = $this->createForm(SearchWineFormType::class);
@@ -41,9 +43,9 @@ class WineController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->get('search')->getData();
 
-            $wines = $wineRepository->findLikeDomaine($search);
+            $wines = $wineRepository->findLikeDomaine($search, $user);
         } else {
-            $wines = $wineRepository->findAll();
+            $wines = $wineRepository->findCellar($user);
         }
         return $this->renderForm('wine/index.html.twig', [
             'user' => $user,
@@ -81,7 +83,6 @@ class WineController extends AbstractController
     #[Route('/filters', name: 'app_wine_filters', methods: ['GET', 'POST'])]
     public function filters(
         WineRepository $winesfiltered,
-        UserRepository $userRepository,
         CountryRepository $countryRepository,
         RegionRepository $regionRepository,
         AppellationRepository $appellationRepo,
@@ -92,7 +93,6 @@ class WineController extends AbstractController
         /** @var User */
         $user = $this->getUser();
 
-        dump($_POST);
         $winesfiltered = $winesfiltered->filterWines($_POST, $user);
         return $this->render('wine/filtered_wines.html.twig', [
             'winesfiltered' => $winesfiltered,
