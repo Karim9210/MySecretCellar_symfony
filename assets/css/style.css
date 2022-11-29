@@ -12,13 +12,15 @@
     --font-third: "Prata", serif;
     --font-maj: "Playfair Display SC";
 }
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: var(--font-primary);
+}
+
+html,
+body {
+    height: 100%;
 }
 h1 {
     font-family: var(--font-maj);

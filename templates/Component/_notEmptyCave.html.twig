@@ -8,35 +8,28 @@
 			</h1>
 		</div>
 	</div>
-	{# barre de recherche #}
-	{# <div class="py-5">
-		<div class="d-flex justify-content-around">
-			<form method="POST" action="cellarByDomain" class="d-flex w-75 gap-5">
-				<input
-				type="text" class="form-control" placeholder="Rechercher son vin" value="" name="wine"/> #}
 
-				{# bouton search #}
-				{# <button class="btn btn-prune d-none d-md-block " type="submit">
-					RECHERCHE
-				</button>
-				<button class=" btn btn-prune d-block d-md-none rounded " type="submit">
-					<img src="{{ asset('build/images/icones/Loupe.svg')}}"/>
-				</button> #}
-				{# bouton filtre #}
-				{# <button class="btn btn-prune d-none d-md-block " type="button" data-bs-toggle="modal" data-bs-target="#modal">
-					FILTRES
-				</button>
-				<button class=" btn btn-prune d-block d-md-none rounded " type="button" data-bs-toggle="modal" data-bs-target="#modal">
-					<img src="{{ asset('build/images/icones/Filtres.svg')}}"/>
-				</button>
-			</form>
-		</div>
-	</div> #}
-	<div>
+	{# barre de recherche #}
+	<div class="py-5">
 		{{ form_start(form) }}
-		{{ form_widget(form) }}
-		<button type="submit">Search</button>
-		{{ form_end(form) }}
+		<div class="d-flex p-2 justify-content-center align-items-center gap-3 ">
+			<div class="d-flex mt-3">
+				{{ form_row(form.search) }}</div>
+			<button class="btn btn-prune d-none d-md-block " type="submit">
+				Recherche
+			</button>
+			<button class=" btn btn-prune d-block d-md-none rounded " type="submit">
+				<img src="{{ asset('build/images/icones/Loupe.svg')}}"/>
+			</button>
+			<button class="btn btn-prune d-none d-md-block " type="button" data-bs-toggle="modal" data-bs-target="#modal">
+				Filtres
+			</button>
+			<button class=" btn btn-prune d-block d-md-none rounded " type="button" data-bs-toggle="modal" data-bs-target="#modal">
+				<img src="{{ asset('build/images/icones/Filtres.svg')}}"/>
+			</button>
+			{{ form_end(form) }}
+		</div>
+
 	</div>
 
 	{% include 'Component/_cardWine.html.twig' %}
@@ -52,7 +45,7 @@
 					<div class="btn-close" data-bs-dismiss="modal"></div>
 				</div>
 				<div class="modal-body">
-					<form class="form" method="POST" action="filters">
+					<form class="form" method="POST" action="">
 						<select name="country" class="form-select my-3" aria-label="Default select example">
 							<option selected value="">Pays</option>
 							{% for country in countries %}
@@ -62,46 +55,46 @@
 							{% endfor %}
 						</select>
 
-							<select name="region" class="form-select my-3" aria-label="Default select example">
-								<option selected value="">Région</option>
-								{% for region in regions %}
-									<option value="{{region.id}}">
-										{{region.labelRegion}}
-									</option>
-								{% endfor %}
-							</select>
-							<select name="appellation" class="form-select my-3" aria-label="Default select example">
-								<option selected value="">Appellation</option>
-								{% for appellation in appellations %}
-									<option value="{{appellation.id}}">
-										{{appellation.labelAppellation}}
-									</option>
-								{% endfor %}
+						<select name="region" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Région</option>
+							{% for region in regions %}
+								<option value="{{region.id}}">
+									{{region.labelRegion}}
+								</option>
+							{% endfor %}
+						</select>
+						<select name="appellation" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Appellation</option>
+							{% for appellation in appellations %}
+								<option value="{{appellation.id}}">
+									{{appellation.labelAppellation}}
+								</option>
+							{% endfor %}
 
-							</select>
+						</select>
 
-							<select name="color" class="form-select my-3" aria-label="Default select example">
-								<option selected value="">Couleur</option>
-								{% for color in colors %}
-									<option value="{{color.id}}">
-										{{color.labelColor}}
-									</option>
-								{% endfor %}
-							</select>
+						<select name="color" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Couleur</option>
+							{% for color in colors %}
+								<option value="{{color.id}}">
+									{{color.labelColor}}
+								</option>
+							{% endfor %}
+						</select>
 
-							<select name="type" class="form-select my-3" aria-label="Default select example">
-								<option selected value="">Type</option>
-								{% for type in types %}
-									<option value="{{type.id}}">
-										{{type.labelType}}
-									</option>
-								{% endfor %}
-							</select>
-							<button type="submit" class="btn btn-prune w-100  btn-sm">Filtrer</button>
-						</form>
-					</div>
+						<select name="type" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Type</option>
+							{% for type in types %}
+								<option value="{{type.id}}">
+									{{type.labelType}}
+								</option>
+							{% endfor %}
+						</select>
+						<button type="submit" class="btn btn-prune w-100  btn-sm">Filtrer</button>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 {# ****************** END modal filtres ******************** #}
