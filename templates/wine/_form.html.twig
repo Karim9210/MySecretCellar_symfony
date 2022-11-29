@@ -41,7 +41,9 @@
 							{# <!-- ----------gpe checkbox ----------------> #}
 							<div class=" mt-4 mb-3 d-flex">
 								<div class="form-check d-flex">
+								<div class="d-flex flex-row" >
                                     {{ form_row(form.color) }}
+								</div>
 									{# <input class="form-check-input" type="radio" name="color_id" id="rouge" value="1">
 									<label class="form-check-label" for="rouge">
 										Rouge
@@ -216,9 +218,11 @@
 
 		<div class="row ss-block3 mx-auto w-100 px-2">
 			<div class="row ss-ss-block2 p-0">
-				<div class="mb-3">
-					<label for="rank" class="form-label text-start p-1 mb-0"></label>
+				<div class="mb-3 d-flex flex-row">
+					{# <label for="rank" class="form-label text-start p-1 mb-0"></label> #}
+					<div>
 					    {{ form_row(form.ranking) }}
+					</div>
                     <div class="etoile">
 						<div class="input_etoile mb-1 ps-3" id="input_etoile1">
 							{# <input type="radio" name="rank"> #}

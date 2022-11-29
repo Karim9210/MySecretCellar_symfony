@@ -49,8 +49,8 @@ class WineController extends AbstractController
         $wine = new Wine();
         $form = $this->createForm(WineType::class, $wine);
         $form->handleRequest($request);
-        /** @var User */
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User */
             $user = $this->getUser();
             $wine->addUser($user);
             $wineRepository->save($wine, true);
@@ -66,7 +66,8 @@ class WineController extends AbstractController
 
     #[Route('/show/{id}', name: 'app_wine_show', methods: ['GET'])]
     public function show(Wine $wine): Response
-    {$winePurchaseDate=$wine->getPurchaseDate()->format('d/m/Y');
+    {
+        $winePurchaseDate = $wine->getPurchaseDate()->format('d/m/Y');
         // dd($winePurchaseDate);
         return $this->render('wine/show.html.twig', [
             'wine' => $wine,
