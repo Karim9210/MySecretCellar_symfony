@@ -36,24 +36,24 @@
 </div>
 
 {# ****************** MODAL FILTRES ******************** #}
-	<div class="container text-dark">
-		<div class="modal blur" id="modal">
-			<div class=" modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header  text-center">
-						<h2>Filtres</h2>
-						<div class="btn-close" data-bs-dismiss="modal"></div>
-					</div>
-					<div class="modal-body">
-						<form class="form" method="POST" action="filteredCellar">
-							<select name="country" class="form-select my-3" aria-label="Default select example">
-								<option selected value="">Pays</option>
-								{% for country in countries %}
-									<option value="{{country.id}}">
-										{{country.labelCountry}}
-									</option>
-								{% endfor %}
-							</select>
+<div class="container text-dark">
+	<div class="modal blur" id="modal">
+		<div class=" modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header  text-center">
+					<h2>Filtres</h2>
+					<div class="btn-close" data-bs-dismiss="modal"></div>
+				</div>
+				<div class="modal-body">
+					<form class="form" method="POST" action="filters">
+						<select name="country" class="form-select my-3" aria-label="Default select example">
+							<option selected value="">Pays</option>
+							{% for country in countries %}
+								<option value="{{country.id}}">
+									{{country.labelCountry}}
+								</option>
+							{% endfor %}
+						</select>
 
 							<select name="region" class="form-select my-3" aria-label="Default select example">
 								<option selected value="">Région</option>
