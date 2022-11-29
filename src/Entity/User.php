@@ -8,6 +8,7 @@ use DateTime;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Serializable;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
@@ -44,6 +45,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     private ?string $avatar = null;
 
     #[Vich\UploadableField(mapping: 'avatar_file', fileNameProperty: 'avatar')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
     private ?File $avatarFile = null;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
