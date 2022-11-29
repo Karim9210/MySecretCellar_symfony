@@ -1,0 +1,50 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+	<div
+		class="bg-lightPrimary">
+		{# header #}
+		<div class="bg-lightSecondary pt-4 w-100" style="height: 180px">
+			<div style="border-bottom:solid; border-bottom-color:var(--prune)">
+				<h1 class="pt-2 ps-2 mt-5 mx-5 text-prune" style="letter-spacing:5px">
+					Ma cave
+				</h1>
+			</div>
+		</div>
+		{# barre de recherche #}
+		<div class="py-5">
+			<div class="d-flex justify-content-around">
+				<form method="POST" action="cellarByDomain" class="d-flex w-75 gap-5">
+					<input
+					type="text" class="form-control" placeholder="Rechercher son vin" value="" name="wine"/>
+
+					{# bouton search #}
+					<button class="btn btn-prune d-none d-md-block " type="submit">
+						RECHERCHE
+					</button>
+					<button class=" btn btn-prune d-block d-md-none rounded " type="submit">
+						<img src="/assets/images/icones/Loupe.svg"/>
+					</button>
+					{# bouton filtre #}
+					<button class="btn btn-prune d-none d-md-block " type="button" data-bs-toggle="modal" data-bs-target="#modal">
+						FILTRES
+					</button>
+					<button class=" btn btn-prune d-block d-md-none rounded " type="button" data-bs-toggle="modal" data-bs-target="#modal">
+						<img src="/assets/images/icones/Filtres.svg"/>
+					</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	{% for wine in winesfiltered %}
+
+		{{wine.domaine}}
+
+	{% endfor %}
+
+
+	{# ****************** MODAL FILTRES ******************** #}
+{% endblock %}

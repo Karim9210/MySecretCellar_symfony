@@ -350,6 +350,7 @@ class Wine
      */
     public function getUser(): Collection
     {
+
         return $this->user;
     }
 

@@ -2,21 +2,25 @@
 
 namespace App\Controller;
 
-use App\Entity\Wine;
 use App\Form\WineType;
+use App\Entity\User;
+use App\Entity\Wine;
 use App\Repository\WineRepository;
 use App\Repository\CountryRepository;
 use App\Repository\RegionRepository;
 use App\Repository\AppellationRepository;
 use App\Repository\ColorRepository;
 use App\Repository\TypeRepository;
+use App\Repository\UserRepository;
 use App\Form\SearchWineFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/wine')]
+
 class WineController extends AbstractController
 {
     #[Route('/', name: 'app_wine_index')]
@@ -59,8 +63,10 @@ class WineController extends AbstractController
         $wine = new Wine();
         $form = $this->createForm(WineType::class, $wine);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User */
+            $user = $this->getUser();
+            $wine->addUser($user);
             $wineRepository->save($wine, true);
 
             return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
@@ -72,11 +78,41 @@ class WineController extends AbstractController
         ]);
     }
 
+    #[Route('/filters', name: 'app_wine_filters', methods: ['GET', 'POST'])]
+    public function filters(
+        WineRepository $winesfiltered,
+        UserRepository $userRepository,
+        CountryRepository $countryRepository,
+        RegionRepository $regionRepository,
+        AppellationRepository $appellationRepo,
+        ColorRepository $colorRepository,
+        TypeRepository $typeRepository
+    ): Response {
+
+        /** @var User */
+        $user = $this->getUser();
+
+        dump($_POST);
+        $winesfiltered = $winesfiltered->filterWines($_POST, $user);
+        return $this->render('wine/filtered_wines.html.twig', [
+            'winesfiltered' => $winesfiltered,
+            'countries' => $countryRepository->findAll(),
+            'regions' => $regionRepository->findAll(),
+            'appellations' => $appellationRepo->findAll(),
+            'colors' => $colorRepository->findAll(),
+            'types' => $typeRepository->findAll(),
+
+        ]);
+    }
+
     #[Route('/show/{id}', name: 'app_wine_show', methods: ['GET'])]
     public function show(Wine $wine): Response
     {
+        $winePurchaseDate = $wine->getPurchaseDate()->format('d/m/Y');
+        // dd($winePurchaseDate);
         return $this->render('wine/show.html.twig', [
             'wine' => $wine,
+            'winePurchaseDate' => $winePurchaseDate
         ]);
     }
 
