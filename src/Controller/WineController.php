@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Wine;
 use App\Form\WineType;
+use App\Entity\User;
+use App\Entity\Wine;
 use App\Repository\WineRepository;
 use App\Repository\CountryRepository;
 use App\Repository\RegionRepository;
@@ -14,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/wine')]
 class WineController extends AbstractController
@@ -47,8 +49,10 @@ class WineController extends AbstractController
         $wine = new Wine();
         $form = $this->createForm(WineType::class, $wine);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User */
+            $user = $this->getUser();
+            $wine->addUser($user);
             $wineRepository->save($wine, true);
 
             return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
@@ -63,8 +67,11 @@ class WineController extends AbstractController
     #[Route('/show/{id}', name: 'app_wine_show', methods: ['GET'])]
     public function show(Wine $wine): Response
     {
+        $winePurchaseDate = $wine->getPurchaseDate()->format('d/m/Y');
+        // dd($winePurchaseDate);
         return $this->render('wine/show.html.twig', [
             'wine' => $wine,
+            'winePurchaseDate' => $winePurchaseDate
         ]);
     }
 
