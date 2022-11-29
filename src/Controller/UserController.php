@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -69,11 +71,18 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, UserRepository $userRepository): Response
-    {
+    public function delete(
+        Request $request,
+        User $user,
+        UserRepository $userRepository,
+        TokenStorageInterface $tokenStorage
+    ): Response {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
+            $request->getSession()->invalidate();
+            $tokenStorage->setToken(null);
+            return $this->redirectToRoute('app_login');
         }
-        return $this->render('security/login.html.twig');
+        return $this->redirectToRoute('app_user_edit', ['id' => $user->getId()]);
     }
 }
