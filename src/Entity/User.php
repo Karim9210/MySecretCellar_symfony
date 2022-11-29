@@ -46,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 
     #[Vich\UploadableField(mapping: 'avatar_file', fileNameProperty: 'avatar')]
     #[Assert\File(
-        maxSize: '1M',
+        maxSize: '2M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
     )]
     private ?File $avatarFile = null;
@@ -232,6 +232,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
             $this->pseudo,
             $this->password,
             $this->avatar,
+            $this->email,
 
         ));
     }
@@ -244,6 +245,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
             $this->pseudo,
             $this->password,
             $this->avatar,
+            $this->email,
+
+
         ) = unserialize($serialized);
     }
 }
