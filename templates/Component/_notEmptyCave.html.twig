@@ -9,21 +9,21 @@
 		</div>
 	</div>
 	{# barre de recherche #}
-	<div class="py-5">
+	{# <div class="py-5">
 		<div class="d-flex justify-content-around">
 			<form method="POST" action="cellarByDomain" class="d-flex w-75 gap-5">
 				<input
-				type="text" class="form-control" placeholder="Rechercher son vin" value="" name="wine"/>
+				type="text" class="form-control" placeholder="Rechercher son vin" value="" name="wine"/> #}
 
 				{# bouton search #}
-				<button class="btn btn-prune d-none d-md-block " type="submit">
+				{# <button class="btn btn-prune d-none d-md-block " type="submit">
 					RECHERCHE
 				</button>
 				<button class=" btn btn-prune d-block d-md-none rounded " type="submit">
 					<img src="{{ asset('build/images/icones/Loupe.svg')}}"/>
-				</button>
+				</button> #}
 				{# bouton filtre #}
-				<button class="btn btn-prune d-none d-md-block " type="button" data-bs-toggle="modal" data-bs-target="#modal">
+				{# <button class="btn btn-prune d-none d-md-block " type="button" data-bs-toggle="modal" data-bs-target="#modal">
 					FILTRES
 				</button>
 				<button class=" btn btn-prune d-block d-md-none rounded " type="button" data-bs-toggle="modal" data-bs-target="#modal">
@@ -31,7 +31,14 @@
 				</button>
 			</form>
 		</div>
+	</div> #}
+	<div>
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<button type="submit">Search</button>
+		{{ form_end(form) }}
 	</div>
+
 	{% include 'Component/_cardWine.html.twig' %}
 </div>
 

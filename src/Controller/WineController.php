@@ -10,6 +10,7 @@ use App\Repository\RegionRepository;
 use App\Repository\AppellationRepository;
 use App\Repository\ColorRepository;
 use App\Repository\TypeRepository;
+use App\Form\SearchWineFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,8 +19,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/wine')]
 class WineController extends AbstractController
 {
-    #[Route('/', name: 'app_wine_index', methods: ['GET'])]
+    #[Route('/', name: 'app_wine_index')]
     public function index(
+        Request $request,
         WineRepository $wineRepository,
         CountryRepository $countryRepository,
         RegionRepository $regionRepository,
@@ -27,12 +29,22 @@ class WineController extends AbstractController
         ColorRepository $colorRepository,
         TypeRepository $typeRepository
     ): Response {
-
         $user = $this->getUser();
 
-        return $this->render('wine/index.html.twig', [
+        $form = $this->createForm(SearchWineFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->get('search')->getData();
+
+            $wines = $wineRepository->findLikeDomaine($search);
+        } else {
+            $wines = $wineRepository->findAll();
+        }
+        return $this->renderForm('wine/index.html.twig', [
             'user' => $user,
-            'wines' => $wineRepository->findAll(),
+            'form' => $form,
+            'wines' => $wines,
             'countries' => $countryRepository->findAll(),
             'regions' => $regionRepository->findAll(),
             'appellations' => $appellationRepo->findAll(),

@@ -1,6 +1,6 @@
 {% block card %}
 	<div class="d-flex flex-column gap-4 justify-content-around pb-5 ">
-		{% for wine in app.user.wines %}
+		{% for wine in wines %}
 			{% if wine.color.id is same as 1 %}
 				{% set color = '#893a2c' %}
 			{% elseif wine.color.id is same as 2 %}

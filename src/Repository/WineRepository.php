@@ -41,6 +41,24 @@ class WineRepository extends ServiceEntityRepository
         }
     }
 
+    public function findLikeDomaine(string $domaine): array
+    {
+        $queryBuilder = $this->createQueryBuilder('w')
+        ->where('w.domaine LIKE :name')
+        ->setParameter('name', '%' . $domaine . '%')
+        ->getQuery();
+
+        return $queryBuilder->getResult();
+    }
+
+
+    // public function sumValue()
+    // {
+    //     $queryBuilder = $this-> createQuery('w')
+    //                     ->select('SUM(w.value) AS total');
+
+    //     return $queryBuilder->getQuery()->getSingleScalarResult();;
+    // }
 
         // public function Stock()
         // {
