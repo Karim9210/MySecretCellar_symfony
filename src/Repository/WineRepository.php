@@ -42,36 +42,67 @@ class WineRepository extends ServiceEntityRepository
     }
 
 
-        // public function Stock()
-        // {
+    // public function Stock()
+    // {
 
-        //     $query = "SELECT sum(stock) FROM " . self::TABLE ;
+    //     $query = "SELECT sum(stock) FROM " . self::TABLE ;
 
-        //     return $this->query($query)->fetchAll();
-        // }
+    //     return $this->query($query)->fetchAll();
+    // }
 
-//    /**
-//     * @return Wine[] Returns an array of Wine objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('w.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Wine[] Returns an array of Wine objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('w')
+    //            ->andWhere('w.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('w.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Wine
-//    {
-//        return $this->createQueryBuilder('w')
-//            ->andWhere('w.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Wine
+    //    {
+    //        return $this->createQueryBuilder('w')
+    //            ->andWhere('w.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
+
+    public function filterWines(array $filters, int $id): array|int|object
+    {
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $queryFilter = 'SELECT * FROM wine w';
+        $queryParams = '';
+        foreach ($filters as $filter => $value) {
+            if (!empty($value)) {
+                if (empty($queryParams)) {
+                    $queryParams .= 'w.' . $filter . '_id=' . $value;
+                } else {
+                    $queryParams .= ' AND ' . 'w.' . $filter . '_id=' . $value;
+                }
+            }
+        }
+
+        if (!empty($queryParams)) {
+            $queryFilter .= " JOIN wine_user on wine_user.wine_id = w.id 
+            JOIN user on wine_user.user_id = user.id 
+            WHERE user.id = " . $id . " AND " . $queryParams;
+        }
+        dump($queryFilter);
+
+        $stmt = $conn->prepare($queryFilter);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }
 }

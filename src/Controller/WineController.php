@@ -11,6 +11,7 @@ use App\Repository\RegionRepository;
 use App\Repository\AppellationRepository;
 use App\Repository\ColorRepository;
 use App\Repository\TypeRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/wine')]
+
 class WineController extends AbstractController
 {
     #[Route('/', name: 'app_wine_index', methods: ['GET'])]
@@ -61,6 +63,33 @@ class WineController extends AbstractController
         return $this->renderForm('wine/new.html.twig', [
             'wine' => $wine,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/filters', name: 'app_wine_filters', methods: ['GET', 'POST'])]
+    public function filters(
+        WineRepository $winesfiltered,
+        UserRepository $userRepository,
+        CountryRepository $countryRepository,
+        RegionRepository $regionRepository,
+        AppellationRepository $appellationRepo,
+        ColorRepository $colorRepository,
+        TypeRepository $typeRepository
+    ): Response {
+
+        $userId = $this->getUser();
+        $user = $userRepository->find($userId);
+        $id = $user->getId();
+
+        $winesfiltered = $winesfiltered->filterWines($_POST, $id);
+
+        return $this->render('wine/filtered_wines.html.twig', [
+            'winesfiltered' => $winesfiltered,
+            'countries' => $countryRepository->findAll(),
+            'regions' => $regionRepository->findAll(),
+            'appellations' => $appellationRepo->findAll(),
+            'colors' => $colorRepository->findAll(),
+            'types' => $typeRepository->findAll(),
         ]);
     }
 
