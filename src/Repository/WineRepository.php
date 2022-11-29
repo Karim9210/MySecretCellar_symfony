@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Wine;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Entity\Country;
 use App\Entity\User;
 
 /**
@@ -43,44 +42,22 @@ class WineRepository extends ServiceEntityRepository
         }
     }
 
+    public function findLikeDomaine(string $domaine, User $user): array
+    {
+        $queryBuilder = $this->createQueryBuilder('w')
+        ->where(':user MEMBER OF w.user')
+        ->setParameters(['user' => $user])
+        ->andWhere('w.domaine LIKE :name')
+        ->setParameter('name', '%' . $domaine . '%');
 
-    // public function Stock()
-    // {
 
-    //     $query = "SELECT sum(stock) FROM " . self::TABLE ;
-
-    //     return $this->query($query)->fetchAll();
-    // }
-
-    //    /**
-    //     * @return Wine[] Returns an array of Wine objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('w')
-    //            ->andWhere('w.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('w.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Wine
-    //    {
-    //        return $this->createQueryBuilder('w')
-    //            ->andWhere('w.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        return $queryBuilder->getQuery()->getResult();
+    }
 
     public function filterWines(array $filters, User $user): array
     {
-        $qb = $this->createQueryBuilder('w')->where(':user MEMBER OF w.user')
-            ->setParameters(['user' => $user]);
+            $qb = $this->createQueryBuilder('w')->where(':user MEMBER OF w.user')
+                ->setParameters(['user' => $user]);
         if (!empty($filters['country'])) {
             $qb->andWhere('w.country = :country')->setParameter('country', $filters['country']);
         }
@@ -88,6 +65,55 @@ class WineRepository extends ServiceEntityRepository
             $qb->andWhere('w.color = :color')->setParameter('color', $filters['color']);
         }
 
+            return $qb->getQuery()->getResult();
+    }
+
+    public function findCellar(User $user): array
+    {
+        $qb = $this->createQueryBuilder('w')
+        ->where(':user MEMBER OF w.user')
+        ->setParameters(['user' => $user]);
         return $qb->getQuery()->getResult();
     }
+
+    // public function sumValue()
+    // {
+    //     $queryBuilder = $this-> createQuery('w')
+    //                     ->select('SUM(w.value) AS total');
+
+    //     return $queryBuilder->getQuery()->getSingleScalarResult();;
+    // }
+
+        // public function Stock()
+        // {
+
+        //     $query = "SELECT sum(stock) FROM " . self::TABLE ;
+
+        //     return $this->query($query)->fetchAll();
+        // }
+
+//    /**
+//     * @return Wine[] Returns an array of Wine objects
+//     */
+//    public function findByExampleField($value): array
+//    {
+//        return $this->createQueryBuilder('w')
+//            ->andWhere('w.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('w.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
+
+//    public function findOneBySomeField($value): ?Wine
+//    {
+//        return $this->createQueryBuilder('w')
+//            ->andWhere('w.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getOneOrNullResult()
+//        ;
+//    }
 }
