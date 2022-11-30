@@ -12,6 +12,7 @@ use App\Repository\AppellationRepository;
 use App\Repository\ColorRepository;
 use App\Repository\TypeRepository;
 use App\Form\SearchWineFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -88,14 +89,14 @@ class WineController extends AbstractController
     public function show(Wine $wine): Response
     {
         $winePurchaseDate = $wine->getPurchaseDate()->format('d/m/Y');
-        // dd($winePurchaseDate);
         return $this->render('wine/show.html.twig', [
             'wine' => $wine,
             'winePurchaseDate' => $winePurchaseDate
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_wine_edit', methods: ['GET', 'POST'])]
+    #[Route('/{wine}/edit', name: 'app_wine_edit', methods: ['GET', 'POST'])]
+
     #[IsGranted('ROLE_USER')]
     public function edit(Request $request, Wine $wine, WineRepository $wineRepository): Response
     {

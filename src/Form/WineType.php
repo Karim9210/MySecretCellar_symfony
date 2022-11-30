@@ -71,7 +71,7 @@ class WineType extends AbstractType
                 'mapped' => true,
                 'class' => Region::class,
                 'choice_label' => 'labelRegion',
-                'by_reference' => false,
+                // 'by_reference' => false,
                 'query_builder' => function (RegionRepository $er) {
                     return $er->createQueryBuilder('r')
                         ->orderBy('r.label', 'ASC');
@@ -82,7 +82,7 @@ class WineType extends AbstractType
                 'mapped' => true,
                 'class' => Country::class,
                 'choice_label' => 'labelCountry',
-                'by_reference' => false,
+                // 'by_reference' => false,
                 'label' => false,
                 'query_builder' => function (CountryRepository $er) {
                     return $er->createQueryBuilder('c')
