@@ -18,10 +18,13 @@ class HomeController extends AbstractController
     public function index(WineRepository $wineRepository, UserRepository $userRepository): Response
     {
             /** @var User */
+            $drinkBefore = date('Y');
         $user = $this->getUser();
         $userRepository->find($user);
         $sumValue = $wineRepository->sumValue($user);
         $bottleNumber = $wineRepository->bottleNumber($user);
+        $randBottle=$wineRepository->randomWine($drinkBefore, $user);
+
 
         return $this->render('home/index.html.twig', [
             'sumValue' => $sumValue,
