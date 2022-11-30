@@ -76,21 +76,35 @@ class WineRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    // public function sumValue()
-    // {
-    //     $queryBuilder = $this-> createQuery('w')
-    //                     ->select('SUM(w.value) AS total');
+    public function sumValue(User $user): int
+    {
 
-    //     return $queryBuilder->getQuery()->getSingleScalarResult();;
-    // }
+        $queryBuilder = $this-> createQueryBuilder('w')
+         ->where(':user MEMBER OF w.user')
+         ->setParameters(['user' => $user])
+         ->select('SUM(w.value) AS total') ;
 
-        // public function Stock()
-        // {
 
-        //     $query = "SELECT sum(stock) FROM " . self::TABLE ;
 
-        //     return $this->query($query)->fetchAll();
-        // }
+        return $queryBuilder->getQuery()->getSingleScalarResult();
+        ;
+    }
+
+    public function bottleNumber(User $user): int
+    {
+
+        $queryBuilder = $this-> createQueryBuilder('w')
+         ->where(':user MEMBER OF w.user')
+         ->setParameters(['user' => $user])
+         ->select('SUM(w.stock) AS total') ;
+
+
+
+        return $queryBuilder->getQuery()->getSingleScalarResult();
+        ;
+    }
+
+
 
 //    /**
 //     * @return Wine[] Returns an array of Wine objects

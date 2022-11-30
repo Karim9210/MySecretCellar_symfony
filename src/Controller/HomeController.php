@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\WineRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,10 +12,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(WineRepository $wineRepository): Response
+    public function index(WineRepository $wineRepository, UserRepository $userRepository): Response
     {
-
-        // $sumValue = $wineRepository->sumValue();
-        return $this->render('home/index.html.twig');
+            /** @var User */
+        $user = $this->getUser();
+        $userRepository->find($user);
+        $sumValue = $wineRepository->sumValue($user);
+        $bottleNumber = $wineRepository->bottleNumber($user);
+        return $this->render('home/index.html.twig', [
+            'sumValue' => $sumValue,
+            'nbBottles' => $bottleNumber,
+        ]);
     }
 }
