@@ -1,4 +1,3 @@
-
 //start coding by removing this file and adding yours ;)
 @import "wcs";
 // // import the functions & variables
@@ -20,3 +19,7 @@ $theme-colors: map-merge($custom-colors, $theme-colors);
 //import bootstrap
 @import "../../vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "~bootstrap/scss/bootstrap";
+
+a {
+    text-decoration: none;
+}

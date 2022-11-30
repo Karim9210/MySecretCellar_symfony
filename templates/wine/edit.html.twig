@@ -1,13 +1,13 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Edit Wine{% endblock %}
+{% block title %}Modification vin
+{% endblock %}
 
-{% block body %}
-    <h1>Edit Wine</h1>
+{% block content %}
 
-    {{ include('wine/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('wine/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('app_wine_index') }}">back to list</a>
+	<a href="{{ path('app_wine_index') }}">Retour</a>
 
-    {{ include('wine/_delete_form.html.twig') }}
+	{{ include('wine/_delete_form.html.twig') }}
 {% endblock %}
