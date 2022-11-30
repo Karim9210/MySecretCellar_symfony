@@ -11,13 +11,11 @@ use App\Repository\RegionRepository;
 use App\Repository\AppellationRepository;
 use App\Repository\ColorRepository;
 use App\Repository\TypeRepository;
-use App\Repository\UserRepository;
 use App\Form\SearchWineFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/wine')]
 
@@ -34,7 +32,7 @@ class WineController extends AbstractController
         TypeRepository $typeRepository
     ): Response {
 
-         /** @var User */
+        /** @var User */
         $user = $this->getUser();
 
         $form = $this->createForm(SearchWineFormType::class);
@@ -44,6 +42,8 @@ class WineController extends AbstractController
             $search = $form->get('search')->getData();
 
             $wines = $wineRepository->findLikeDomaine($search, $user);
+        } elseif (!empty($_POST)) {
+            $wines = $wineRepository->filterWines($_POST, $user);
         } else {
             $wines = $wineRepository->findCellar($user);
         }
@@ -77,31 +77,6 @@ class WineController extends AbstractController
         return $this->renderForm('wine/new.html.twig', [
             'wine' => $wine,
             'form' => $form,
-        ]);
-    }
-
-    #[Route('/filters', name: 'app_wine_filters', methods: ['GET', 'POST'])]
-    public function filters(
-        WineRepository $winesfiltered,
-        CountryRepository $countryRepository,
-        RegionRepository $regionRepository,
-        AppellationRepository $appellationRepo,
-        ColorRepository $colorRepository,
-        TypeRepository $typeRepository
-    ): Response {
-
-        /** @var User */
-        $user = $this->getUser();
-
-        $winesfiltered = $winesfiltered->filterWines($_POST, $user);
-        return $this->render('wine/filtered_wines.html.twig', [
-            'winesfiltered' => $winesfiltered,
-            'countries' => $countryRepository->findAll(),
-            'regions' => $regionRepository->findAll(),
-            'appellations' => $appellationRepo->findAll(),
-            'colors' => $colorRepository->findAll(),
-            'types' => $typeRepository->findAll(),
-
         ]);
     }
 

@@ -12,8 +12,13 @@ class SearchWineFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('search', SearchType::class)
-        ;
+            ->add(
+                'search',
+                SearchType::class,
+                [
+                    'label' => false,
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
