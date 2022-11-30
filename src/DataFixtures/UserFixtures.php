@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class UserFixtures extends Fixture
 {
@@ -15,6 +16,7 @@ class UserFixtures extends Fixture
             "email" => "admin@admin.fr",
             "password" => "admin",
             "avatar" => "",
+            "isMajeur" => true,
             "role" => ["ROLE_ADMIN"]
         ],
         [
@@ -22,6 +24,7 @@ class UserFixtures extends Fixture
             "email" => "user@user.fr",
             "password" => "Fraise2090",
             "avatar" => "",
+            "isMajeur" => true,
             "role" => ["ROLE_USER"]
         ],
         [
@@ -29,6 +32,7 @@ class UserFixtures extends Fixture
             "email" => "lalou@lala.fr",
             "password" => "Fraise2090",
             "avatar" => "",
+            "isMajeur" => true,
             "role" => ["ROLE_USER"]
         ],
         [
@@ -36,6 +40,7 @@ class UserFixtures extends Fixture
             "email" => "lala@lala.fr",
             "password" => "Fraise2090",
             "avatar" => "",
+            "isMajeur" => true,
             "role" => ["ROLE_USER"]
         ],
         [
@@ -43,6 +48,7 @@ class UserFixtures extends Fixture
             "email" => "jeanne@jeanne.fr",
             "password" => "password",
             "avatar" => "",
+            "isMajeur" => true,
             "role" => ["ROLE_USER"]
         ],
         [
@@ -50,6 +56,7 @@ class UserFixtures extends Fixture
             "email" => "patoche@patoche.fr",
             "password" => "Fraise2090",
             "avatar" => "",
+            "isMajeur" => true,
             "role" => ["ROLE_USER"]
         ],
         [
@@ -57,6 +64,7 @@ class UserFixtures extends Fixture
             "email" => "michel@michel.fr",
             "password" => "password",
             "avatar" => "",
+            "isMajeur" => true,
             "role" => ["ROLE_USER"]
         ]
     ];
@@ -68,11 +76,12 @@ class UserFixtures extends Fixture
         foreach (self::USER as $key => $userIndex) {
             $user = new User();
             $user
-            ->setPseudo($userIndex['pseudo'])
-            ->setEmail($userIndex['email'])
-            ->setPassword($userIndex['password'])
-            ->setAvatar($userIndex['avatar'])
-            ->setRoles($userIndex["role"]);
+                ->setPseudo($userIndex['pseudo'])
+                ->setEmail($userIndex['email'])
+                ->setPassword($userIndex['password'])
+                ->setAvatar($userIndex['avatar'])
+                ->setIsMajeur($userIndex['isMajeur'])
+                ->setRoles($userIndex["role"]);
             $manager->persist($user);
             $this->addReference(self::PREFIX . ($key + 1), $user);
 
