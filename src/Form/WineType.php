@@ -27,21 +27,22 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class WineType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('user', HiddenType::class,[
-            //     'data' => 'user',
-            // ])
-            ->add('picture')
+            ->add('wineFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+            ])
             ->add('color', EntityType::class, [
                 'class' => Color::class,
                 'choice_label'  => 'labelColor',
                 'label' => false,
-                // 'multiple' => false,
                 'expanded' => true,
                 'required' => true
             ])

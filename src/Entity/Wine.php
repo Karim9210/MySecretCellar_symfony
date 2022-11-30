@@ -3,16 +3,24 @@
 namespace App\Entity;
 
 use App\Repository\WineRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  * @SuppressWarnings(PHPMD.TooManyFields)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+
  */
 #[ORM\Entity(repositoryClass: WineRepository::class)]
+#[Vich\Uploadable]
 class Wine
 {
     #[ORM\Id]
@@ -46,6 +54,16 @@ class Wine
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
+
+    #[Vich\UploadableField(mapping: 'wine_file', fileNameProperty: 'picture')]
+    #[Assert\File(
+        maxSize: '2M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+    private ?File $wineFile = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private \DateTimeInterface $updatedAt;
 
     #[ORM\Column(nullable: true)]
     private ?int $drinkBefore = null;
@@ -366,6 +384,44 @@ class Wine
     public function removeUser(User $user): self
     {
         $this->user->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * Get the value of wineFile
+     */
+    public function getWineFile(): ?File
+    {
+        return $this->wineFile;
+    }
+
+
+    public function setWineFile(?File $image = null): void
+    {
+        $this->wineFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt(): DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set the value of updatedAt
+     *
+     * @return  self
+     */
+    public function setUpdatedAt(DateTimeInterface $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

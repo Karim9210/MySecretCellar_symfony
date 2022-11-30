@@ -12,6 +12,7 @@ use App\Repository\AppellationRepository;
 use App\Repository\ColorRepository;
 use App\Repository\TypeRepository;
 use App\Form\SearchWineFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class WineController extends AbstractController
 {
     #[Route('/', name: 'app_wine_index')]
+    #[IsGranted('ROLE_USER')]
     public function index(
         Request $request,
         WineRepository $wineRepository,
@@ -60,6 +62,7 @@ class WineController extends AbstractController
     }
 
     #[Route('/new', name: 'app_wine_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, WineRepository $wineRepository): Response
     {
         $wine = new Wine();
@@ -81,6 +84,7 @@ class WineController extends AbstractController
     }
 
     #[Route('/show/{id}', name: 'app_wine_show', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function show(Wine $wine): Response
     {
         //  $winePurchaseDate = $wine->getPurchaseDate()->format('d/m/Y');
@@ -92,6 +96,7 @@ class WineController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_wine_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function edit(Request $request, Wine $wine, WineRepository $wineRepository): Response
     {
         $form = $this->createForm(WineType::class, $wine);
@@ -110,6 +115,7 @@ class WineController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_wine_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
     public function delete(Request $request, Wine $wine, WineRepository $wineRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $wine->getId(), $request->request->get('_token'))) {
