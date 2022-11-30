@@ -142,7 +142,9 @@
 					<a href="maCave" type="button" class="btn p-0 m-0">
 						<i style="font-size:42px;" class="bi bi-arrow-left"></i>
 					</a>
-					<a href="showUpdateForm?id={{wine.id}}" type="button" class="btn btn-prune w-25 my-3 p-2 rounded h-2">
+					{# <a href="showUpdateForm?id={{wine.id}}" type="button" class="btn btn-prune w-25 my-3 p-2 rounded h-2"> #}
+					<a href='{{ path('app_wine_edit', {'wine': wine.id}) }}' type="button" class="btn btn-prune w-25 my-3 p-2 rounded h-2">
+					
 						<p class="mb-0 text-center">Modifier</p>
 					</a>
 
