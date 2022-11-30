@@ -11,19 +11,19 @@ use App\Repository\RegionRepository;
 use App\Repository\AppellationRepository;
 use App\Repository\ColorRepository;
 use App\Repository\TypeRepository;
-use App\Repository\UserRepository;
 use App\Form\SearchWineFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Route('/wine')]
 
 class WineController extends AbstractController
 {
     #[Route('/', name: 'app_wine_index')]
+    #[IsGranted('ROLE_USER')]
     public function index(
         Request $request,
         WineRepository $wineRepository,
@@ -34,7 +34,7 @@ class WineController extends AbstractController
         TypeRepository $typeRepository
     ): Response {
 
-         /** @var User */
+        /** @var User */
         $user = $this->getUser();
 
         $form = $this->createForm(SearchWineFormType::class);
@@ -44,6 +44,8 @@ class WineController extends AbstractController
             $search = $form->get('search')->getData();
 
             $wines = $wineRepository->findLikeDomaine($search, $user);
+        } elseif (!empty($_POST)) {
+            $wines = $wineRepository->filterWines($_POST, $user);
         } else {
             $wines = $wineRepository->findCellar($user);
         }
@@ -60,6 +62,7 @@ class WineController extends AbstractController
     }
 
     #[Route('/new', name: 'app_wine_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, WineRepository $wineRepository): Response
     {
         $wine = new Wine();
@@ -80,32 +83,8 @@ class WineController extends AbstractController
         ]);
     }
 
-    #[Route('/filters', name: 'app_wine_filters', methods: ['GET', 'POST'])]
-    public function filters(
-        WineRepository $winesfiltered,
-        CountryRepository $countryRepository,
-        RegionRepository $regionRepository,
-        AppellationRepository $appellationRepo,
-        ColorRepository $colorRepository,
-        TypeRepository $typeRepository
-    ): Response {
-
-        /** @var User */
-        $user = $this->getUser();
-
-        $winesfiltered = $winesfiltered->filterWines($_POST, $user);
-        return $this->render('wine/filtered_wines.html.twig', [
-            'winesfiltered' => $winesfiltered,
-            'countries' => $countryRepository->findAll(),
-            'regions' => $regionRepository->findAll(),
-            'appellations' => $appellationRepo->findAll(),
-            'colors' => $colorRepository->findAll(),
-            'types' => $typeRepository->findAll(),
-
-        ]);
-    }
-
     #[Route('/show/{id}', name: 'app_wine_show', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function show(Wine $wine): Response
     {
         $winePurchaseDate = $wine->getPurchaseDate()->format('d/m/Y');
@@ -117,6 +96,7 @@ class WineController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_wine_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function edit(Request $request, Wine $wine, WineRepository $wineRepository): Response
     {
         $form = $this->createForm(WineType::class, $wine);
@@ -135,6 +115,7 @@ class WineController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_wine_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
     public function delete(Request $request, Wine $wine, WineRepository $wineRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $wine->getId(), $request->request->get('_token'))) {

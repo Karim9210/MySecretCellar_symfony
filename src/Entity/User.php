@@ -41,6 +41,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
+    #[ORM\Column]
+    private ?bool $isMajeur = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
 
@@ -249,5 +252,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 
 
         ) = unserialize($serialized);
+    }
+
+    public function isIsMajeur(): ?bool
+    {
+        return $this->isMajeur;
+    }
+
+    public function setIsMajeur(bool $isMajeur): self
+    {
+        $this->isMajeur = $isMajeur;
+
+        return $this;
     }
 }

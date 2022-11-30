@@ -53,6 +53,17 @@ class RegistrationFormType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => false, // not mandatory, default is true
                 'download_uri' => false, // not mandatory, default is true
+            ])
+            ->add('isMajeur', CheckboxType::class, [
+                // 'mapped' => false,
+                'required' => true,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'Vous devez être majeur pour vous connecter.',
+
+                    ]),
+                ],
+                'label' => 'Je suis majeur.',
             ]);
     }
 
