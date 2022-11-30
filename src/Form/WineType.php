@@ -27,21 +27,22 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class WineType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('user', HiddenType::class,[
-            //     'data' => 'user',
-            // ])
-            ->add('picture')
+            ->add('wineFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+            ])
             ->add('color', EntityType::class, [
                 'class' => Color::class,
                 'choice_label'  => 'labelColor',
                 'label' => false,
-                // 'multiple' => false,
                 'expanded' => true,
                 'required' => true
             ])
@@ -65,31 +66,29 @@ class WineType extends AbstractType
                     return $er->createQueryBuilder('a')
                         ->orderBy('a.label', 'ASC');
                 }
-                ])
+            ])
             ->add('region', EntityType::class, [
                 'mapped' => true,
                 'class' => Region::class,
                 'choice_label' => 'labelRegion',
-                // 'multiple' => true,
-                // 'expanded' => true,
                 'by_reference' => false,
                 'query_builder' => function (RegionRepository $er) {
                     return $er->createQueryBuilder('r')
                         ->orderBy('r.label', 'ASC');
                 },
-                'label' => false])
+                'label' => false
+            ])
             ->add('country', EntityType::class, [
                 'mapped' => true,
                 'class' => Country::class,
                 'choice_label' => 'labelCountry',
-                // 'multiple' => true,
-                // 'expanded' => true,
                 'by_reference' => false,
                 'label' => false,
                 'query_builder' => function (CountryRepository $er) {
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.label', 'ASC');
-                }])
+                }
+            ])
             ->add('description', TextType::class, [
                 'label' => false
             ])
@@ -100,15 +99,16 @@ class WineType extends AbstractType
                 'expanded' => true,
                 'mapped' => false,
                 'label' => false
-                ])
+            ])
             ->add('purchaseDate', DateType::class, ['label' => false,])
-            ->add('price', MoneyType::class, ['currency' => 'EUR','label' => false])
+            ->add('price', MoneyType::class, ['currency' => 'EUR', 'label' => false])
             ->add('drinkBefore', IntegerType::class, ['label' => false])
-            ->add('value', MoneyType::class, ['currency' => 'EUR','label' => false])
+            ->add('value', MoneyType::class, ['currency' => 'EUR', 'label' => false])
             ->add('ranking', ChoiceType::class, [
                 'label' => false,
                 'expanded' => true,
-                'choices' => ['1' => '1','2' => '2','3' => '3','4' => '4','5' => '5'],])
+                'choices' => ['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5'],
+            ])
             ->add('comment', TextType::class, ['label' => false])
             ->add('stock', IntegerType::class, ['label' => false])
             ->add('cellarLocation', TextType::class, ['label' => false])
@@ -121,10 +121,8 @@ class WineType extends AbstractType
                 'query_builder' => function (GrapeVarietyRepository $er) {
                     return $er->createQueryBuilder('g')
                         ->orderBy('g.label', 'ASC');
-                }])
-
-
-        ;
+                }
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

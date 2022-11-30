@@ -16,9 +16,10 @@
 			</div>
 		</div>
 		<div class="bg-primaryLight p-5 ">
-					{{ form_start(form) }}
-             {# {{ form_row(form.user) }}  #}
-				<div class=" p-3 border-start border-end shadow-lg text-prune block2" enctype="multipart/form-data">
+			{{ form_start(form) }}
+			{# {{ form_row(form.user) }}  #}
+			<div
+				class=" p-3 border-start border-end shadow-lg text-prune block2" enctype="multipart/form-data">
 				<!-- ********************************** sous-block1 ********************************* -->
 
 				<div
@@ -30,10 +31,12 @@
 						<div class="div_illustration input-group-sm" id="div_illustration">
 							<div class="img_bouteille m-auto">
 								<img src="/assets/images/bouteille.svg" class="mt-5 mb-2 w-1 h-auto"></div>
-                                   {{ form_row(form.picture) }}
-							{# <input
-							type="file" name="avatar" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="illustrationUpload"/> #}
-						{# <label for="illustration" class="form-label text-start p-1 mb-0 form-label text-start p-1 mb-0"></label> #}
+							{# {{ form_row(form.picture) }} #}
+							{{ form_row(form.wineFile) }}
+
+						{# <input
+																			type="file" name="avatar" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="illustrationUpload"/> #}
+							{# <label for="illustration" class="form-label text-start p-1 mb-0 form-label text-start p-1 mb-0"></label> #}
 						</div>
 						{# <!-- ----------------------block input à côté image -----------------------------> #}
 						<div
@@ -41,285 +44,293 @@
 							{# <!-- ----------gpe checkbox ----------------> #}
 							<div class=" mt-4 mb-3 d-flex">
 								<div class="form-check d-flex">
-								<div class="d-flex flex-row" >
-                                    {{ form_row(form.color) }}
-								</div>
+									<div class="d-flex flex-row">
+										{{ form_row(form.color) }}
+									</div>
 									{# <input class="form-check-input" type="radio" name="color_id" id="rouge" value="1">
-									<label class="form-check-label" for="rouge">
-										Rouge
-									</label>
-								</div>
-								<div class="form-check ms-3 ">
-									<input class="form-check-input" type="radio" name="color_id" id="rose" value="3">
-									<label class="form-check-label" for="rose">
-										Rosé
-									</label>
-								</div>
-								<div class="form-check ms-3">
-									<input class="form-check-input" type="radio" name="color_id" id="blanc" value="2">
-									<label class="form-check-label" for="blanc">
-										Blanc
-									</label> #}
+																											<label class="form-check-label" for="rouge">
+																												Rouge
+																											</label>
+																										</div>
+																										<div class="form-check ms-3 ">
+																											<input class="form-check-input" type="radio" name="color_id" id="rose" value="3">
+																											<label class="form-check-label" for="rose">
+																												Rosé
+																											</label>
+																										</div>
+																										<div class="form-check ms-3">
+																											<input class="form-check-input" type="radio" name="color_id" id="blanc" value="2">
+																											<label class="form-check-label" for="blanc">
+																												Blanc
+																											</label> #}
 								</div>
 							</div>
 							{# <!-- ----------FIN gpe checkbox ----------------> #}
 							<div class="d-flex flex-column" id="div_domaine">
 								<label for="domaine" class="form-label text-start p-1 mb-0 mt-2 text-start">Domaine :</label>
 								{# <input type="text" name="domaine" class="form-control w-100" id="domaine" placeholder="Domaine :" required></div> #}
-                                 {{ form_row(form.domaine) }}
-							<div
-								class="type d-flex flex-column ">
-								<!--row -->
-								<label for="type" name="type" class="form-label text-start mb-0 mt-2">Type :</label>
-                                 {{ form_row(form.type) }}
+								{{ form_row(form.domaine) }}
+								<div
+									class="type d-flex flex-column ">
+									<!--row -->
+									<label for="type" name="type" class="form-label text-start mb-0 mt-2">Type :</label>
+									{{ form_row(form.type) }}
 								{# <select class="form-select form-select-sm mt-3" aria-label="Default select example" name="type_id">
-									<option selected desabled>Choisir le type</option>
-									{% for type in types %}
-										<option value="{{ type.id }}">{{ type.label }}</option>
-									{% endfor %}
-								</select> #}
-								{# <select class="select-type" name="type[]" multiple id="type">
-																							                                                                                                                                                            																																																																																																																																																																																																																																																																																																													                            <?php foreach ($types as $type) : ?>
-																							                                                                                                                                                            																																																																																																																																																																																																																																																																																																													                                    <option value="<?= $type['id'] ?>"><?= $type['libelle'] ?> </option>
-																							                                                                                                                                                            																																																																																																																																																																																																																																																																																																													                                <?php endforeach ?>
-																							                                                                                                                                                            																																																																																																																																																																																																																																																																																																													                        </select> #}
+																									<option selected desabled>Choisir le type</option>
+																									{% for type in types %}
+																										<option value="{{ type.id }}">{{ type.label }}</option>
+																									{% endfor %}
+																								</select> #}
+									{# <select class="select-type" name="type[]" multiple id="type">
+																																									                                                                                                                                                            																																																																																																																																																																																																																																																																																																													                            <?php foreach ($types as $type) : ?>
+																																									                                                                                                                                                            																																																																																																																																																																																																																																																																																																													                                    <option value="<?= $type['id'] ?>"><?= $type['libelle'] ?> </option>
+																																									                                                                                                                                                            																																																																																																																																																																																																																																																																																																													                                <?php endforeach ?>
+																																									                                                                                                                                                            																																																																																																																																																																																																																																																																																																													                        </select> #}
+								</div>
+
+								<div class="d-flex flex-column" id="div_annee">
+									<label for="vintage" class="form-label text-start p-1 mt-3 mb-0 mb-0 text-start">Année:</label>
+									{{ form_row(form.vintage) }}
+									{# <input type="number" name="vintage" class="form-control w-100" id="vintage" value='{{ wine.vintage }}'></div> #}
+
+
+									<div class="select_app_block d-flex flex-column" id="div_appellation">
+										<label for="appellation_id" class="form-label text-start p-1 mt-3 mb-0">Appellation :</label>
+										{{ form_row(form.appellation) }}
+										{# <select class="form-select form-select-sm mb-0" aria-label="Default select example" name="appellation_id" id="appellation_id">
+																													<option selected>Choisir l'appellation</option>
+																													{% for appellation in appellations %}
+																														<option value={{ appellation.id }}>{{ appellation.label }}</option>
+																													{% endfor %}
+																				
+																												</select> #}
+									</div>
+									<div class="select_region_block d-flex flex-column" id="div_region">
+										<label for="region_id" class="form-label text-start p-1 mb-0 mt-3">Région :</label>
+										{{ form_row(form.region) }}
+										{# <select class="form-select form-select-sm mt-3" aria-lasbel="Default select example" name="region_id" id="region_id">
+																												<option selected>Choisir la région</option>
+																												{% for region in regions %}
+																													<option value="{{ region.id }}">{{ region.label }}</option>
+																												{% endfor %}
+																											</select> #}
+									</div>
+									<div class="d-flex flex-column" id="div_pays">
+										<label for="country_id" class="form-label text-start p-1 mb-0 mt-3 ">Pays :</label>
+
+										{{ form_row(form.country) }}
+										{# <select class="form-select form-select-sm mt-3" aria-lasbel="Default select example" name="country_id" id="country_id">
+																												<option selected>Choisir le pays</option>
+																												{% for country in countries %}
+																													<option value="{{ country.id }}">{{ country.label }}</option>
+																												{% endfor %}
+																											</select> #}
+									</div>
+								</div>
+								<!-- FIN div gpe_right_img  -->
 							</div>
-
-							<div class="d-flex flex-column" id="div_annee">
-								<label for="vintage" class="form-label text-start p-1 mt-3 mb-0 mb-0 text-start">Année:</label>
-                                {{ form_row(form.vintage) }}
-								{# <input type="number" name="vintage" class="form-control w-100" id="vintage" value='{{ wine.vintage }}'></div> #}
-
-
-							<div class="select_app_block d-flex flex-column" id="div_appellation">
-								<label for="appellation_id" class="form-label text-start p-1 mt-3 mb-0">Appellation :</label>
-                                    {{ form_row(form.appellation) }}
-								{# <select class="form-select form-select-sm mb-0" aria-label="Default select example" name="appellation_id" id="appellation_id">
-									<option selected>Choisir l'appellation</option>
-									{% for appellation in appellations %}
-										<option value={{ appellation.id }}>{{ appellation.label }}</option>
-									{% endfor %}
-
-								</select> #}
-						</div>
-						<div class="select_region_block d-flex flex-column" id="div_region">
-							<label for="region_id" class="form-label text-start p-1 mb-0 mt-3">Région :</label>
-                                {{ form_row(form.region) }}
-							{# <select class="form-select form-select-sm mt-3" aria-lasbel="Default select example" name="region_id" id="region_id">
-								<option selected>Choisir la région</option>
-								{% for region in regions %}
-									<option value="{{ region.id }}">{{ region.label }}</option>
-								{% endfor %}
-							</select> #}
-						</div>
-						<div class="d-flex flex-column" id="div_pays">
-							<label for="country_id" class="form-label text-start p-1 mb-0 mt-3 ">Pays :</label>
-                                
-                                {{ form_row(form.country) }}
-							{# <select class="form-select form-select-sm mt-3" aria-lasbel="Default select example" name="country_id" id="country_id">
-								<option selected>Choisir le pays</option>
-								{% for country in countries %}
-									<option value="{{ country.id }}">{{ country.label }}</option>
-								{% endfor %}
-							</select> #}
-						</div>
-					</div>
-					<!-- FIN div gpe_right_img  -->
-				</div>
-				<!-- FIN div img_+_input  -->
-			{# <!-- ----------------------input vintage en long -----------------------------> #}
-				<div
-              class="sous_image d-flex flex-column" id="div_vintage">
-              <label for="cepage" name="cepage"class="form-label text-start p-1 mb-0 mt-3"></label>
-              {{ form_row(form.grapeVariety) }}
-              {# <select class="form-select form-select-sm mt-4" aria-lasbel="Default select example">
-                  <option selected>Choisir le cépage</option>
-              </select> #}
-          </div>
-			</div>
-
-
-			<div class="mb-3 ss-block2">
-				<div class="ss-ss-block2-1">
-					<div class="mb-3 mx-auto">
-					<label for="description_id" class="form-label text-start p-1 mb-0 mt-3 ">Description :</label>
-                         {{ form_row(form.description) }}
-						{# <textarea type="text" name="description" class=" textearea form-control mt-4 mx-auto" id="description" rows="4" placeholder="Description commerciale..."></textarea> #}
-					</div>
-					<div class="d-flex row justify-content-around block_checkBox m-auto">
-						<p class="ms-3 mb-1 ">SE BOIT AVEC</p>
-						<hr>
-						<div class=" ms-2 col checkBoxLeft">
-                            {{ form_row(form.winePairing) }}
-
-							{# <div class="form-check">
-								<input class="form-check-input" type="checkbox" value="1" id="Charcuterie" name="winePairings[]">
-								<label class="form-check-label" for="Charcuterie">Charcuterie</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="3" id="ViandeBlanche" name="winePairings[]">
-								<label class="form-check-label" for="ViandeBlanche">Viande blanche</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="2" id="ViandeRouge" name="winePairing[]">
-								<label class="form-check-label" for="ViandeRouge">Viande rouge</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="4" id="Gibier" name="winePairings[]">
-								<label class="form-check-label" for="Gibier">Gibier</label>
+							<!-- FIN div img_+_input  -->
+							{# <!-- ----------------------input vintage en long -----------------------------> #}
+							<div class="sous_image d-flex flex-column" id="div_vintage">
+								<label for="cepage" name="cepage" class="form-label text-start p-1 mb-0 mt-3"></label>
+								{{ form_row(form.grapeVariety) }}
+								{# <select class="form-select form-select-sm mt-4" aria-lasbel="Default select example">
+																                  <option selected>Choisir le cépage</option>
+																              </select> #}
 							</div>
 						</div>
-						<div class="col ms-5 checkBoxRight">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="5" id="Poisson" name="winePairings[]">
-								<label class="form-check-label" for="Poisson">Poisson</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="6" id="Fromage" name="winePairings[]">
-								<label class="form-check-label" for="Fromage">Fromage</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="7" id="Chocolat" name="winePairings[]">
-								<label class="form-check-label" for="Chocolat">Chocolat</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="8" id="fruités" name="winePairings[]">
-								<label class="form-check-label" for="fruités">Dessert fruités</label>
-							</div>
-						</div> #}
-					</div>
-				</div>
-
-				<div class="row justify-content-around ss-ss-block2-2">
-					<div class="col-5">
-						<div class="my-3">
-							<label for="date_achat" class="form-label text-start p-1 mb-0">Date d'achat :</label>
-                                {{ form_row(form.purchaseDate) }}
-							{# <input type="date" name="purchaseDate" class="form-control" id="date_achat"></textarea> #}
-					</div>
-					<div class="mb-3">
-						<label for="price" class="form-label text-start p-1 mb-0">Prix d'achat :</label>
-						{# <input type="number" name="price" class="form-control" id="price" placeholder="€"></div> #}
-                            {{ form_row(form.price) }}
-				</div>
-				<div class="col-5 ">
-					<div class="my-3">
-						<label for="aging" name="aging" class="form-label text-start p-1 mb-0">Boire avant :</label>
-                        {{ form_row(form.drinkBefore) }}
-						{# <input type="number" name="drinkBefore" class="form-control" id="aging" placeholder="Année"></div> #}
-					<div class="mb-3">
-						<label for="value" class="form-label text-start p-1 mb-0">Valeur à date :</label>
-                         {{ form_row(form.value) }}
-						{# <input type="number" name="value" class="form-control" id="value" placeholder="€"></div> #}
-				</div>
-			</div>
-		</div>
 
 
-		<div class="row ss-block3 mx-auto w-100 px-2">
-			<div class="row ss-ss-block2 p-0">
-				<div class="mb-3 d-flex flex-row">
-					{# <label for="rank" class="form-label text-start p-1 mb-0"></label> #}
-					<div>
-					    {{ form_row(form.ranking) }}
-					</div>
-                    <div class="etoile">
-						<div class="input_etoile mb-1 ps-3" id="input_etoile1">
-							{# <input type="radio" name="rank"> #}
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-						</div>
-						<div class=" input_etoile mb-1 ps-3" id="input_etoile2">
-							{# <input type="radio" name="rank"> #}
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-						</div>
-						<div class=" input_etoile mb-1 ps-3" id="input_etoile3">
-							{# <input type="radio" name="rank"> #}
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-						</div>
-						<div class=" input_etoile mb-1 ps-3" id="input_etoile4">
-							{# <input type="radio" name="rank"> #}
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-						</div>
-						<div class=" input_etoile mb-1 ps-3" id="input_etoile5">
-							{# <input type="radio" name="rank"> #}
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-							<span class="etoile ms-1">
-								<i class="bi bi-star-fill text-warning"></i>
-							</span>
-						</div>
+						<div class="mb-3 ss-block2">
+							<div class="ss-ss-block2-1">
+								<div class="mb-3 mx-auto">
+									<label for="description_id" class="form-label text-start p-1 mb-0 mt-3 ">Description :</label>
+									{{ form_row(form.description) }}
+									{# <textarea type="text" name="description" class=" textearea form-control mt-4 mx-auto" id="description" rows="4" placeholder="Description commerciale..."></textarea> #}
+								</div>
+								<div class="d-flex row justify-content-around block_checkBox m-auto">
+									<p class="ms-3 mb-1 ">SE BOIT AVEC</p>
+									<hr>
+									<div class=" ms-2 col checkBoxLeft">
+										{{ form_row(form.winePairing) }}
 
-					</div>
-				</div>
+										{# <div class="form-check">
+																												<input class="form-check-input" type="checkbox" value="1" id="Charcuterie" name="winePairings[]">
+																												<label class="form-check-label" for="Charcuterie">Charcuterie</label>
+																											</div>
+																											<div class="form-check">
+																												<input class="form-check-input" type="checkbox" value="3" id="ViandeBlanche" name="winePairings[]">
+																												<label class="form-check-label" for="ViandeBlanche">Viande blanche</label>
+																											</div>
+																											<div class="form-check">
+																												<input class="form-check-input" type="checkbox" value="2" id="ViandeRouge" name="winePairing[]">
+																												<label class="form-check-label" for="ViandeRouge">Viande rouge</label>
+																											</div>
+																											<div class="form-check">
+																												<input class="form-check-input" type="checkbox" value="4" id="Gibier" name="winePairings[]">
+																												<label class="form-check-label" for="Gibier">Gibier</label>
+																											</div>
+																										</div>
+																										<div class="col ms-5 checkBoxRight">
+																											<div class="form-check">
+																												<input class="form-check-input" type="checkbox" value="5" id="Poisson" name="winePairings[]">
+																												<label class="form-check-label" for="Poisson">Poisson</label>
+																											</div>
+																											<div class="form-check">
+																												<input class="form-check-input" type="checkbox" value="6" id="Fromage" name="winePairings[]">
+																												<label class="form-check-label" for="Fromage">Fromage</label>
+																											</div>
+																											<div class="form-check">
+																												<input class="form-check-input" type="checkbox" value="7" id="Chocolat" name="winePairings[]">
+																												<label class="form-check-label" for="Chocolat">Chocolat</label>
+																											</div>
+																											<div class="form-check">
+																												<input class="form-check-input" type="checkbox" value="8" id="fruités" name="winePairings[]">
+																												<label class="form-check-label" for="fruités">Dessert fruités</label>
+																											</div>
+																										</div> #}
+									</div>
+								</div>
 
-				<div class="mb-3">
-				<label for="comment" class="comment_label form-label text-start ps-3 pt-2 mb-0  w-25">Commentaire :</label>
-                    {{ form_row(form.comment) }}
-					{# <textarea type="text" name="comment" class=" textearea form-control mt-4 mx-1" id="comment" rows="4" placeholder="Commentaires..."></textarea> #}
-				</div>
-			</div>
-		</div>
-		<div class="row ss-block4">
-			<div class="stock_block mt-4 d-inline-flex">
-				<label for="stock" class="stock_label form-label text-start ps-3 pt-2 mb-0  w-25">STOCK :</label>
-				{# <input type="number" name="stock" class="form-control w-25" id="stock"></div> #}
-                 {{ form_row(form.stock) }}
-			<div class="my-4">
-				<label for="location" class="textearea form-label text-start ps-3 pb-1 mb-0">Emplacement :</label>
-				{# <textarea type="text" name="cellarLocation" class="textearea form-control mt-0 mx-auto" id="location" rows="2" placeholder="Etagère, armoire casier..."></textarea> #}
-                    {{ form_row(form.cellarLocation) }}
+								<div class="row justify-content-around ss-ss-block2-2">
+									<div class="col-5">
+										<div class="my-3">
+											<label for="date_achat" class="form-label text-start p-1 mb-0">Date d'achat :</label>
+											{{ form_row(form.purchaseDate) }}
+											{# <input type="date" name="purchaseDate" class="form-control" id="date_achat"></textarea> #}
+										</div>
+										<div class="mb-3">
+											<label for="price" class="form-label text-start p-1 mb-0">Prix d'achat :</label>
+											{# <input type="number" name="price" class="form-control" id="price" placeholder="€"></div> #}
+											{{ form_row(form.price) }}
+										</div>
+										<div class="col-5 ">
+											<div class="my-3">
+												<label for="aging" name="aging" class="form-label text-start p-1 mb-0">Boire avant :</label>
+												{{ form_row(form.drinkBefore) }}
+												{# <input type="number" name="drinkBefore" class="form-control" id="aging" placeholder="Année"></div> #}
+												<div class="mb-3">
+													<label for="value" class="form-label text-start p-1 mb-0">Valeur à date :</label>
+													{{ form_row(form.value) }}
+													{# <input type="number" name="value" class="form-control" id="value" placeholder="€"></div> #}
+												</div>
+											</div>
+										</div>
 
-			</div>
-		</div>
 
-		<div class="d-flex justify-content-center gap-3 mt-3 mb-5">
-			<div class="bg_prune d-flex justify-content-center">
-            <button class="btn">{{ button_label|default('Save') }}</button>
-				{# <button type="submit" id="btnadd" class=" btn btn-prune mb-3 mt-3">Ajouter</button> #}
+										<div class="row ss-block3 mx-auto w-100 px-2">
+											<div class="row ss-ss-block2 p-0">
+												<div
+													class="mb-3 d-flex flex-row">
+													{# <label for="rank" class="form-label text-start p-1 mb-0"></label> #}
+													<div>
+														{{ form_row(form.ranking) }}
+													</div>
+													<div class="etoile">
+														<div
+															class="input_etoile mb-1 ps-3" id="input_etoile1">
+															{# <input type="radio" name="rank"> #}
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+														</div>
+														<div
+															class=" input_etoile mb-1 ps-3" id="input_etoile2">
+															{# <input type="radio" name="rank"> #}
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+														</div>
+														<div
+															class=" input_etoile mb-1 ps-3" id="input_etoile3">
+															{# <input type="radio" name="rank"> #}
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+														</div>
+														<div
+															class=" input_etoile mb-1 ps-3" id="input_etoile4">
+															{# <input type="radio" name="rank"> #}
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+														</div>
+														<div
+															class=" input_etoile mb-1 ps-3" id="input_etoile5">
+															{# <input type="radio" name="rank"> #}
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+															<span class="etoile ms-1">
+																<i class="bi bi-star-fill text-warning"></i>
+															</span>
+														</div>
 
-			</div>
-			<div class="bg_prune d-flex justify-content-center">
-				<a href="maCave" type="submit" id="btnadd" class=" btn btn-pinkWine  mb-3 mt-3">Annuler</a>
-			</div>
+													</div>
+												</div>
 
-		</div>
-    </div>
-	{{ form_end(form) }}
-</div></div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script></body>{% endblock %}
+												<div class="mb-3">
+													<label for="comment" class="comment_label form-label text-start ps-3 pt-2 mb-0  w-25">Commentaire :</label>
+													{{ form_row(form.comment) }}
+													{# <textarea type="text" name="comment" class=" textearea form-control mt-4 mx-1" id="comment" rows="4" placeholder="Commentaires..."></textarea> #}
+												</div>
+											</div>
+										</div>
+										<div class="row ss-block4">
+											<div class="stock_block mt-4 d-inline-flex">
+												<label for="stock" class="stock_label form-label text-start ps-3 pt-2 mb-0  w-25">STOCK :</label>
+												{# <input type="number" name="stock" class="form-control w-25" id="stock"></div> #}
+												{{ form_row(form.stock) }}
+												<div class="my-4">
+													<label for="location" class="textearea form-label text-start ps-3 pb-1 mb-0">Emplacement :</label>
+													{# <textarea type="text" name="cellarLocation" class="textearea form-control mt-0 mx-auto" id="location" rows="2" placeholder="Etagère, armoire casier..."></textarea> #}
+													{{ form_row(form.cellarLocation) }}
 
+												</div>
+											</div>
+
+											<div class="d-flex justify-content-center gap-3 mt-3 mb-5">
+												<div class="bg_prune d-flex justify-content-center">
+													<button class="btn">{{ button_label|default('Save') }}</button>
+													{# <button type="submit" id="btnadd" class=" btn btn-prune mb-3 mt-3">Ajouter</button> #}
+
+												</div>
+												<div class="bg_prune d-flex justify-content-center">
+													<a href="maCave" type="submit" id="btnadd" class=" btn btn-pinkWine  mb-3 mt-3">Annuler</a>
+												</div>
+
+											</div>
+										</div>
+										{{ form_end(form) }}
+									</div>
+								</div>
+								<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+							</body>
+						{% endblock %}
