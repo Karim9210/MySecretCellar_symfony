@@ -12,7 +12,6 @@ use App\Entity\Appellation;
 use App\Entity\User;
 use App\Entity\Type;
 use App\Repository\AppellationRepository;
-use App\Repository\EntityRepository;
 use App\Repository\RegionRepository;
 use App\Repository\CountryRepository;
 use App\Repository\GrapeVarietyRepository;
@@ -23,10 +22,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class WineType extends AbstractType
@@ -37,7 +35,9 @@ class WineType extends AbstractType
             ->add('wineFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
-                'download_uri' => true, // not mandatory, default is true
+                'download_uri' => true,
+                'label' => false,
+                // not mandatory, default is true
             ])
             ->add('color', EntityType::class, [
                 'class' => Color::class,
@@ -46,9 +46,7 @@ class WineType extends AbstractType
                 'expanded' => true,
                 'required' => true
             ])
-            ->add('domaine', TextType::class, [
-                'label' => false
-            ])
+            ->add('domaine', TextType::class, ['label' => false])
             ->add('type', EntityType::class, [
                 'class' => Type::class,
                 'choice_label'  => 'labelType',
@@ -91,27 +89,28 @@ class WineType extends AbstractType
                         ->orderBy('c.label', 'ASC');
                 }
             ])
-            ->add('description', TextType::class, [
-                'label' => false
-            ])
+            ->add('description', TextareaType::class, ['label' => false])
             ->add('winePairing', EntityType::class, [
                 'class' => WinePairing::class,
                 'choice_label' => 'labelWinePairing',
                 'multiple' => true,
                 'expanded' => true,
                 'mapped' => false,
-                'label' => false
+                'label' => false,
+
             ])
-            ->add('purchaseDate', DateType::class, ['label' => false,])
+            ->add('purchaseDate', DateType::class, ['label' => false])
             ->add('price', MoneyType::class, ['currency' => 'EUR', 'label' => false])
             ->add('drinkBefore', IntegerType::class, ['label' => false])
             ->add('value', MoneyType::class, ['currency' => 'EUR', 'label' => false])
             ->add('ranking', ChoiceType::class, [
                 'label' => false,
                 'expanded' => true,
-                'choices' => ['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5'],
+                'choices' => [
+                    '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5'
+                ],
             ])
-            ->add('comment', TextType::class, ['label' => false])
+            ->add('comment', TextareaType::class, ['label' => false])
             ->add('stock', IntegerType::class, ['label' => false])
             ->add('cellarLocation', TextType::class, ['label' => false])
             ->add('grapeVariety', EntityType::class, [
@@ -120,6 +119,7 @@ class WineType extends AbstractType
                 'multiple' => true,
                 'expanded' => false,
                 'by_reference' => false,
+                'label' => false,
                 'query_builder' => function (GrapeVarietyRepository $er) {
                     return $er->createQueryBuilder('g')
                         ->orderBy('g.label', 'ASC');
