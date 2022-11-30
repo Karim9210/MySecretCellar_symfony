@@ -77,7 +77,7 @@ class WineRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function sumValue(User $user): int
+    public function sumValue(User $user): ?int
     {
 
         $queryBuilder = $this-> createQueryBuilder('w')
@@ -85,14 +85,14 @@ class WineRepository extends ServiceEntityRepository
          ->setParameters(['user' => $user])
          ->select('SUM(w.value) AS total') ;
 
-
-
-        $result=$queryBuilder->getQuery()->getSingleScalarResult();
-        return 0;
-        
+        $number = $queryBuilder->getQuery()->getSingleScalarResult();
+        if ($number < 0 || $number === null) {
+            return 0;
+        }
+        return $number;
     }
 
-    public function bottleNumber(User $user): int
+    public function bottleNumber(User $user): ?int
     {
 
         $queryBuilder = $this-> createQueryBuilder('w')
@@ -100,39 +100,12 @@ class WineRepository extends ServiceEntityRepository
          ->setParameters(['user' => $user])
          ->select('SUM(w.stock) AS total') ;
 
-
-
-         $result=$queryBuilder->getQuery()->getSingleScalarResult();
-         return 0
-        ;
+            $result = $queryBuilder->getQuery()->getSingleScalarResult();
+        if ($result < 0 || $result === null) {
+            return 0;
+        }
+        return $result;
     }
-
-  
-
-    public function randomWine($drinkBefore, User $user)
-    {
-        $queryBuilder = $this-> createQueryBuilder('w')
-        ->where(':user MEMBER OF w.user')
-        ->setParameters(['user' => $user])
-        ->andWhere('w.drinkBefore= :drinkbefore')
-        ->setParameters(['drinkBefore' => $drinkBefore])
-        ->orderBy('rand(w.drinkBefore)')
-        ->setMaxResults(1);
-         // ->select('RAND(w.drinkBefore) ')
-        return $queryBuilder->getQuery()->getResult();
-    }
-
-
-    // public function randomWine()
-    // {
-    //     $queryBuilder = $this->createQuery("SELECT * FROM wine WHERE drinkBefore=:drinkBefore
-    //      ORDER BY RAND()LIMIT 1")
-
-    //                         ->setParameters(['drinkBefore' => $drinkBefore]);
-
-    //     return $queryBuilder->getQuery()->getResult();
-
-    // }
 
 
 
