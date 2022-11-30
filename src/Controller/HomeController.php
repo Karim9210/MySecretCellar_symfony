@@ -22,6 +22,7 @@ class HomeController extends AbstractController
         $userRepository->find($user);
         $sumValue = $wineRepository->sumValue($user);
         $bottleNumber = $wineRepository->bottleNumber($user);
+
         return $this->render('home/index.html.twig', [
             'sumValue' => $sumValue,
             'nbBottles' => $bottleNumber,

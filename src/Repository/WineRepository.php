@@ -104,6 +104,35 @@ class WineRepository extends ServiceEntityRepository
         ;
     }
 
+    // function UniqueRandomNumbersWithinRange($min, $max, $quantity) {
+    //     $numbers = range($min, $max);
+    //     shuffle($numbers);
+    //     return array_slice($numbers, 0, $quantity);
+    //     }
+
+    // public function randomWine($date)
+    // {
+    //     $queryBuilder = $this-> createQueryBuilder('w')
+    //     ->where(':user MEMBER OF w.user')
+    //     ->setParameters(['user' => $user])
+    //     ->andWhere('w.drinkBefore')
+    //     ->setParameter(['drinkBefore' => $drinkBefore])
+    //     ->select('RAND(w.drinkBefore) ') ;
+
+    //     return $queryBuilder->getQuery()->getResult();
+    // }
+
+    // public function randomWine()
+    // {
+    //     $queryBuilder = $this->createQuery("SELECT * FROM wine WHERE drinkBefore=:drinkBefore
+    //      ORDER BY RAND()LIMIT 1")
+
+    //                         ->setParameters(['drinkBefore' => $drinkBefore]);
+
+    //     return $queryBuilder->getQuery()->getResult();
+
+    // }
+
 
 
 //    /**
