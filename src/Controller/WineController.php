@@ -110,6 +110,7 @@ class WineController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $wine->setWinePairing($form->get('winePairing')->getData());
             $wineRepository->save($wine, true);
 
             $this->addFlash('success', 'Modification enregistrée !');
