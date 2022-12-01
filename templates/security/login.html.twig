@@ -32,9 +32,9 @@
 
 					{% if app.user %}
 						<div class="mb-3">
-							You are logged in as
+							Vous êtes connecté en tant que :
 							{{ app.user.userIdentifier }},
-							<a href="{{ path('app_logout') }}">Logout</a>
+							<a href="{{ path('app_logout') }}">Se Déconnecter</a>
 						</div>
 					{% endif %}
 
@@ -44,8 +44,7 @@
 					<label for="inputPassword">Mot de passe</label>
 					<input type="password" name="password" id="inputPassword" class="form-control mb-3" autocomplete="current-password" required>
 
-					<input
-					type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 
 					<div class="checkbox mb-3">

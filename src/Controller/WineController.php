@@ -78,6 +78,8 @@ class WineController extends AbstractController
             $wine->addUser($user);
             $wineRepository->save($wine, true);
 
+            $this->addFlash('success', 'Nouveau vin ajouté a votre cave !');
+
             return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -109,6 +111,8 @@ class WineController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $wineRepository->save($wine, true);
+
+            $this->addFlash('success', 'Modification enregistrée !');
 
             return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
         }
