@@ -12,6 +12,7 @@ use App\Entity\Appellation;
 use App\Entity\User;
 use App\Entity\Type;
 use App\Repository\AppellationRepository;
+use App\Repository\EntityRepository;
 use App\Repository\RegionRepository;
 use App\Repository\CountryRepository;
 use App\Repository\GrapeVarietyRepository;
@@ -22,6 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -35,9 +37,8 @@ class WineType extends AbstractType
             ->add('wineFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
-                'download_uri' => true,
+                'download_uri' => true, // not mandatory, default is true
                 'label' => false,
-                // not mandatory, default is true
             ])
             ->add('color', EntityType::class, [
                 'class' => Color::class,

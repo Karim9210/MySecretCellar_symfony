@@ -108,7 +108,7 @@
 
 
 			{# second section description #}
-			<div class=" border-top border-bottom border-prune  p-4" style="background-color: var(--kakiOpacity)">
+			<div class="border-top border-bottom border-prune  p-4" style="background-color: var(--kakiOpacity)">
 				<h3>Description</h3>
 				<p>{{wine.description}}</p>
 			</div>
@@ -128,50 +128,51 @@
 						</strong>
 						{{wine.cellarLocation}}</p>
 				</div>
+			</div>
 
-				{# fourth section commentaire #}
-				<div class=" border-top border-bottom border-prune p-4" style="background-color: var(--kakiOpacity)">
-					<h3>Mon commentaire</h3>
-					<p>{{wine.comment}}</p>
-				</div>
+			{# fourth section commentaire #}
+			<div class=" border-top border-bottom border-prune p-4" style="background-color: var(--kakiOpacity)">
+				<h3>Mon commentaire</h3>
+				<p>{{wine.comment}}</p>
+			</div>
 
 
-				{# fifth section buttons modify and return #}
-				<div class="d-flex justify-content-between p-4">
-					<a href="{{ path('app_wine_index') }}" type="button" class="btn p-0 m-0">
-						<i style="font-size:42px;" class="bi bi-arrow-left"></i>
+			{# fifth section buttons modify and return #}
+			<div class="d-flex justify-content-between p-4">
+				<a href="{{ path('app_wine_index') }}" type="button" class="btn p-0 m-0">
+					<i style="font-size:42px;" class="bi bi-arrow-left"></i>
+				</a>
+				<div class="d-flex gap-5">
+					<a href="{{ path('app_wine_edit', {'wine': wine.id}) }}" type="button" class="btn btn-prune my-3 p-2 rounded h-2">
+						Modifier
 					</a>
-					<div class="d-flex gap-5">
-						<a href="{{ path('app_wine_edit', {'id': wine.id}) }}" type="button" class="btn btn-prune my-3 p-2 rounded h-2">
-							Modifier
-						</a>
 
-						{{ include('wine/_delete_form.html.twig') }}
-					</div>
-
+					{{ include('wine/_delete_form.html.twig') }}
 				</div>
+
 			</div>
 		</div>
+	</div>
 
 
-		{# *************** MODAL STOCK ******************* #}
-		<div class="modal blur" id="modal">
-			<div class=" modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header  text-center">
-						<h2 class="text-prune">Stock</h2>
-						<div class="btn-close" data-bs-dismiss="modal"></div>
-					</div>
-					{# <form action="updateStock?id={{wine.id}}" method="POST" class="modal-body">
-																																																																																																																																																									<input type="number" id="stock" name="stock" min="1" max="1200" class="w-100 mb-3" style="text-align:center">
-																																																																																																																																																									<div class="d-flex gap-2 justify-content-center">
-																																																																																																																																																										<button type="submit" class=" btn btn-pinkWine  w-50  btn-sm">Valider</button>
-																																																																																																																																																										<button type="button" data-bs-dismiss="modal" class=" btn bg-lightprimary w-50 btn-sm border border-dark">Annuler</button>
-																																																																																																																																																									</div>
-																																																																																																																																																								</form> #}
+	{# *************** MODAL STOCK ******************* #}
+	<div class="modal blur" id="modal">
+		<div class=" modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header  text-center">
+					<h2 class="text-prune">Stock</h2>
+					<div class="btn-close" data-bs-dismiss="modal"></div>
 				</div>
+				{# <form action="updateStock?id={{wine.id}}" method="POST" class="modal-body">
+																																																																																																																																																																																					<input type="number" id="stock" name="stock" min="1" max="1200" class="w-100 mb-3" style="text-align:center">
+																																																																																																																																																																																					<div class="d-flex gap-2 justify-content-center">
+																																																																																																																																																																																						<button type="submit" class=" btn btn-pinkWine  w-50  btn-sm">Valider</button>
+																																																																																																																																																																																						<button type="button" data-bs-dismiss="modal" class=" btn bg-lightprimary w-50 btn-sm border border-dark">Annuler</button>
+																																																																																																																																																																																					</div>
+																																																																																																																																																																																				</form> #}
 			</div>
 		</div>
-		{# ****************** END modal STOCK ******************** #}
+	</div>
+	{# ****************** END modal STOCK ******************** #}
 
-	{% endblock %}
+</div>{% endblock %}
