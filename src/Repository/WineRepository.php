@@ -51,6 +51,7 @@ class WineRepository extends ServiceEntityRepository
         ->setParameter('name', '%' . $domaine . '%');
 
 
+
         return $queryBuilder->getQuery()->getResult();
     }
 
@@ -76,21 +77,49 @@ class WineRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    // public function sumValue()
-    // {
-    //     $queryBuilder = $this-> createQuery('w')
-    //                     ->select('SUM(w.value) AS total');
+    public function sumValue(User $user): ?int
+    {
 
-    //     return $queryBuilder->getQuery()->getSingleScalarResult();;
-    // }
+        $queryBuilder = $this-> createQueryBuilder('w')
+         ->where(':user MEMBER OF w.user')
+         ->setParameters(['user' => $user])
+         ->select('SUM(w.value) AS total') ;
 
-        // public function Stock()
-        // {
+        $number = $queryBuilder->getQuery()->getSingleScalarResult();
+        if ($number < 0 || $number === null) {
+            return 0;
+        }
+        return $number;
+    }
 
-        //     $query = "SELECT sum(stock) FROM " . self::TABLE ;
+    public function bottleNumber(User $user): ?int
+    {
 
-        //     return $this->query($query)->fetchAll();
-        // }
+        $queryBuilder = $this-> createQueryBuilder('w')
+         ->where(':user MEMBER OF w.user')
+         ->setParameters(['user' => $user])
+         ->select('SUM(w.stock) AS total') ;
+
+            $result = $queryBuilder->getQuery()->getSingleScalarResult();
+        if ($result < 0 || $result === null) {
+            return 0;
+        }
+        return $result;
+    }
+    public function randomWine(string $drinkBefore, User $user): ?array
+    {
+
+        $queryBuilder = $this-> createQueryBuilder('w')
+        ->where(':user MEMBER OF w.user')
+        ->andWhere('w.drinkBefore= :drinkBefore')
+        ->setParameters(['drinkBefore' => $drinkBefore, 'user' => $user])
+        ->orderBy('rand(w.drinkBefore)')
+        ->setMaxResults(1);
+        $random = $queryBuilder->getQuery()->getResult();
+        return $random;
+    }
+
+
 
 //    /**
 //     * @return Wine[] Returns an array of Wine objects

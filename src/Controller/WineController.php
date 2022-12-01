@@ -50,6 +50,9 @@ class WineController extends AbstractController
         } else {
             $wines = $wineRepository->findCellar($user);
         }
+
+
+
         return $this->renderForm('wine/index.html.twig', [
             'user' => $user,
             'form' => $form,
