@@ -12,7 +12,7 @@ use App\Repository\AppellationRepository;
 use App\Repository\ColorRepository;
 use App\Repository\TypeRepository;
 use App\Form\SearchWineFormType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use App\Form\UpdateStockFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -89,15 +89,25 @@ class WineController extends AbstractController
         ]);
     }
 
-    #[Route('/show/{id}', name: 'app_wine_show', methods: ['GET'])]
+    #[Route('/show/{id}', name: 'app_wine_show', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
-    public function show(Wine $wine): Response
+    public function show(Wine $wine, WineRepository $wineRepository, Request $request): Response
     {
-        //$winePurchaseDate = $wine->getPurchaseDate()->format('d/m/Y');
-        // dd($winePurchaseDate);
-        return $this->render('wine/show.html.twig', [
+        $winePurchaseDate = $wine->getPurchaseDate()->format('d/m/Y');
+
+        $form = $this->createForm(UpdateStockFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //getForm recupere valeur message d'erreurs et getData que la valeur
+            $wine-> setStock($form->get('stock')->getData());
+            $wineRepository->save($wine, true);
+        }
+
+        return $this->renderForm('wine/show.html.twig', [
             'wine' => $wine,
-            // 'winePurchaseDate' => $winePurchaseDate
+            'winePurchaseDate' => $winePurchaseDate,
+            'form' => $form,
         ]);
     }
 
@@ -108,6 +118,8 @@ class WineController extends AbstractController
     {
         $form = $this->createForm(WineType::class, $wine);
         $form->handleRequest($request);
+
+        // $updateStock = $wineRepository->updateStock($wine);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $wine->setWinePairing($form->get('winePairing')->getData());
@@ -123,6 +135,8 @@ class WineController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
 
     #[Route('/{id}', name: 'app_wine_delete', methods: ['POST'])]
     #[IsGranted('ROLE_USER')]
