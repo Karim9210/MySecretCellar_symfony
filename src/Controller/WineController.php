@@ -91,10 +91,11 @@ class WineController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function show(Wine $wine): Response
     {
-        $winePurchaseDate = $wine->getPurchaseDate()->format('d/m/Y');
+        //$winePurchaseDate = $wine->getPurchaseDate()->format('d/m/Y');
+        // dd($winePurchaseDate);
         return $this->render('wine/show.html.twig', [
             'wine' => $wine,
-            'winePurchaseDate' => $winePurchaseDate
+            // 'winePurchaseDate' => $winePurchaseDate
         ]);
     }
 
