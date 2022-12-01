@@ -87,9 +87,8 @@ class WineRepository extends ServiceEntityRepository
 
 
 
-        $result=$queryBuilder->getQuery()->getSingleScalarResult();
+        $queryBuilder->getQuery()->getSingleScalarResult();
         return 0;
-        
     }
 
     public function bottleNumber(User $user): int
@@ -102,39 +101,24 @@ class WineRepository extends ServiceEntityRepository
 
 
 
-         $result=$queryBuilder->getQuery()->getSingleScalarResult();
-         return 0
-        ;
+         $queryBuilder->getQuery()->getSingleScalarResult();
+         return 0;
     }
 
-  
 
-    public function randomWine($drinkBefore, User $user)
+
+    public function randomWine(string $drinkBefore, User $user): ?array
     {
+
         $queryBuilder = $this-> createQueryBuilder('w')
         ->where(':user MEMBER OF w.user')
-        ->setParameters(['user' => $user])
-        ->andWhere('w.drinkBefore= :drinkbefore')
-        ->setParameters(['drinkBefore' => $drinkBefore])
+        ->andWhere('w.drinkBefore= :drinkBefore')
+        ->setParameters(['drinkBefore' => $drinkBefore, 'user' => $user])
         ->orderBy('rand(w.drinkBefore)')
         ->setMaxResults(1);
-         // ->select('RAND(w.drinkBefore) ')
-        return $queryBuilder->getQuery()->getResult();
+        $random = $queryBuilder->getQuery()->getResult();
+        return $random;
     }
-
-
-    // public function randomWine()
-    // {
-    //     $queryBuilder = $this->createQuery("SELECT * FROM wine WHERE drinkBefore=:drinkBefore
-    //      ORDER BY RAND()LIMIT 1")
-
-    //                         ->setParameters(['drinkBefore' => $drinkBefore]);
-
-    //     return $queryBuilder->getQuery()->getResult();
-
-    // }
-
-
 
 //    /**
 //     * @return Wine[] Returns an array of Wine objects

@@ -17,18 +17,23 @@ class HomeController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function index(WineRepository $wineRepository, UserRepository $userRepository): Response
     {
-            /** @var User */
-            $drinkBefore = date('Y');
+        $drinkBefore = date('Y');
+        /** @var User */
         $user = $this->getUser();
         $userRepository->find($user);
         $sumValue = $wineRepository->sumValue($user);
         $bottleNumber = $wineRepository->bottleNumber($user);
-        $randBottle=$wineRepository->randomWine($drinkBefore, $user);
-
-
+        $randBottle = $wineRepository->randomWine($drinkBefore, $user);
+        if (!empty($randBottle)) {
+            $bottle = 1;
+        } else {
+            $bottle = 0;
+        };
         return $this->render('home/index.html.twig', [
             'sumValue' => $sumValue,
             'nbBottles' => $bottleNumber,
+            'bottle' => $bottle,
+            'randBottle' => $randBottle
         ]);
     }
 }
