@@ -13,6 +13,7 @@ use App\Repository\ColorRepository;
 use App\Repository\TypeRepository;
 use App\Form\SearchWineFormType;
 use App\Form\UpdateStockFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,6 +51,9 @@ class WineController extends AbstractController
         } else {
             $wines = $wineRepository->findCellar($user);
         }
+
+
+
         return $this->renderForm('wine/index.html.twig', [
             'user' => $user,
             'form' => $form,
@@ -106,7 +110,8 @@ class WineController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_wine_edit', methods: ['GET', 'POST'])]
+    #[Route('/{wine}/edit', name: 'app_wine_edit', methods: ['GET', 'POST'])]
+
     #[IsGranted('ROLE_USER')]
     public function edit(Request $request, Wine $wine, WineRepository $wineRepository): Response
     {

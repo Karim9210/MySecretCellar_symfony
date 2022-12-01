@@ -1,13 +1,18 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Edit Wine{% endblock %}
+{% block title %}Modification vin
+{% endblock %}
 
-{% block body %}
-    <h1>Edit Wine</h1>
+{% block content %}
+	<div id="wrapper" class="bg-lightPrimary">
+		<div class="bg-lightSecondary pt-4 w-100" style="height: 180px">
+			<div style="border-bottom:solid; border-bottom-color:var(--prune)">
+				<h1 class="pt-2 ps-2 mt-5 mx-5 text-prune" style="letter-spacing:5px">
+					Mettre à jour ma bouteille
+				</h1>
+			</div>
+		</div>
+		{{ include('wine/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+	</div>
 
-    {{ include('wine/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_wine_index') }}">back to list</a>
-
-    {{ include('wine/_delete_form.html.twig') }}
 {% endblock %}

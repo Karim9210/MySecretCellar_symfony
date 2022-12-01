@@ -1,10 +1,10 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Wine{% endblock %}
+{% block title %}Wine
+{% endblock %}
 
-{% block body %}
-    {% block content %}
- 
+{% block content %}
+
 
 	<div class="bg-lightSecondary pt-4 w-100" style="height: 180px">
 		<div style="border-bottom:solid; border-bottom-color:var(--prune)">
@@ -16,7 +16,7 @@
 
 	<div class="bg-lightPrimary p-4">
 		<div
-			class="bg-lightPrimary show_wine my-5 border-start border-end shadow-lg text-prune">
+			class="bg-lightPrimary col-md-6 mx-auto show_wine my-5 border-start border-end shadow-lg text-prune">
 
 			{# first section #}
 			<div
@@ -51,13 +51,13 @@
 										Il accompagnera parfaitement :<br></p>
 									<p class="px-2">
 										{% for winePairingList in wine.winePairing  %}
-                                            {{winePairingList.LabelWinePairing}}
+											{{winePairingList.LabelWinePairing}}
 											<br>
 										{% endfor %}
 									</p>
 								</div>
 								<div>
-									<img src={{wine.picture}} alt="Wine Picture" style="max-height: 15Rem; object-fit:cover">
+									<img src="{{ vich_uploader_asset( wine ) }}" alt="Wine Picture" style="max-height: 15Rem; object-fit:cover">
 								</div>
 							</div>
 							<hr class="border-3">
@@ -108,7 +108,7 @@
 
 
 			{# second section description #}
-			<div class=" border-top border-bottom border-prune  p-4" style="background-color: var(--kakiOpacity)">
+			<div class="border-top border-bottom border-prune  p-4" style="background-color: var(--kakiOpacity)">
 				<h3>Description</h3>
 				<p>{{wine.description}}</p>
 			</div>
@@ -121,7 +121,8 @@
 					<p class="text-prune">Valeur :
 						{{wine.value}}€</p>
 					<p class="text-prune">Date d'achat :
-						{{winePurchaseDate}}</p>
+						{# {{winePurchaseDate}} #}
+					</p>
 					<p>
 						<strong>Emplacement dans ma cave :
 						</strong>
@@ -138,13 +139,16 @@
 
 			{# fifth section buttons modify and return #}
 			<div class="d-flex justify-content-between p-4">
-				<a href="maCave" type="button" class="btn p-0 m-0">
+				<a href="{{ path('app_wine_index') }}" type="button" class="btn p-0 m-0">
 					<i style="font-size:42px;" class="bi bi-arrow-left"></i>
 				</a>
-				<a href="showUpdateForm?id={{wine.id}}" type="button" class="btn btn-prune w-25 my-3 p-2 rounded h-2">
-					<p class="mb-0 text-center">Modifier</p>
-				</a>
+				<div class="d-flex gap-5">
+					<a href="{{ path('app_wine_edit', {'wine': wine.id}) }}" type="button" class="btn btn-prune my-3 p-2 rounded h-2">
+						Modifier
+					</a>
 
+					{{ include('wine/_delete_form.html.twig') }}
+				</div>
 
 			</div>
 		</div>
@@ -159,26 +163,14 @@
 					<h2 class="text-prune">Stock</h2>
 					<div class="btn-close" data-bs-dismiss="modal"></div>
 				</div>
-				{# <form action="updateStock?id={{wine.id}}" method="POST" class="modal-body">
-					<input type="number" id="stock" name="stock" min="1" max="1200" class="w-100 mb-3" style="text-align:center">
-					<div class="d-flex gap-2 justify-content-center">
-						<button type="submit" class=" btn btn-pinkWine  w-50  btn-sm">Valider</button>
-						<button type="button" data-bs-dismiss="modal" class=" btn bg-lightprimary w-50 btn-sm border border-dark">Annuler</button>
-					</div>
-				</form> #}
+	
 			{{ form_start(form) }}
 			{{ form_widget(form) }}
-			<button>Search</button>
+			<button>Modifier le stock</button>
 			{{ form_end(form) }}
 			</div>
 		</div>
 	</div>
 	{# ****************** END modal STOCK ******************** #}
-{% endblock %}
 
-    <a href="{{ path('app_wine_index') }}">back to list</a>
-
-    <a href="{{ path('app_wine_edit', {'id': wine.id}) }}">edit</a>
-
-    {{ include('wine/_delete_form.html.twig') }}
-{% endblock %}
+</div>{% endblock %}

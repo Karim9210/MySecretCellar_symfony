@@ -106,6 +106,18 @@ class WineRepository extends ServiceEntityRepository
         }
         return $result;
     }
+    public function randomWine(string $drinkBefore, User $user): ?array
+    {
+
+        $queryBuilder = $this-> createQueryBuilder('w')
+        ->where(':user MEMBER OF w.user')
+        ->andWhere('w.drinkBefore= :drinkBefore')
+        ->setParameters(['drinkBefore' => $drinkBefore, 'user' => $user])
+        ->orderBy('rand(w.drinkBefore)')
+        ->setMaxResults(1);
+        $random = $queryBuilder->getQuery()->getResult();
+        return $random;
+    }
 
 //    /**
 //     * @return Wine[] Returns an array of Wine objects

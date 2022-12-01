@@ -193,8 +193,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
         return $this;
     }
 
-
-    public function setAvatarFile(File $image = null): void
+    public function setAvatarFile(?File $image = null): void
     {
         $this->avatarFile = $image;
         if ($image) {
