@@ -3,7 +3,9 @@
 
 	<div class="row mb-3 d-flex flex-column flex-md-row">
 		<div class="col d-flex flex-column align-content-center">
+
 			<img src="{{ asset('build/images/bouteille.svg') }}" style="max-height:140px;" class="mt-5 mb-3 w-1 h-auto">
+			{{ form_row(form.wineFile) }}
 		</div>
 		<div class="col">
 			<label for="domaine" class="form-label text-start p-1 mb-0">Domaine :</label>
@@ -43,7 +45,7 @@
 			<div class=" ms-2 col checkBoxLeft">
 				{{ form_row(form.winePairing) }}
 				{# <label for="date_achat" class="form-label text-start p-1 mb-0">Date d'achat :</label>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														{{ form_row(form.purchaseDate) }} #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		{{ form_row(form.purchaseDate) }} #}
 			</div>
 		</div>
 		<div class="col">
