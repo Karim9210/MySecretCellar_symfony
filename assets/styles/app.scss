@@ -20,6 +20,19 @@ $theme-colors: map-merge($custom-colors, $theme-colors);
 @import "../../vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "~bootstrap/scss/bootstrap";
 
+:root {
+    --font-primary: "Lato", sans-serif;
+    --font-secondary: "Playfair Display", serif;
+    --font-third: "Prata", serif;
+    --font-maj: "Playfair Display SC";
+}
+
+h1 {
+    font-family: var(--font-maj);
+}
+h2 {
+    font-family: var(--font-secondary);
+}
 a {
     text-decoration: none;
 }

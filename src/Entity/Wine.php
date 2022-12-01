@@ -425,4 +425,16 @@ class Wine
 
         return $this;
     }
+
+    /**
+     * Set the value of winePairing
+     *
+     * @return  self
+     */
+    public function setWinePairing(ArrayCollection $winePairing): self
+    {
+        $this->winePairing = $winePairing;
+
+        return $this;
+    }
 }

@@ -36,8 +36,8 @@ class WineType extends AbstractType
         $builder
             ->add('wineFile', VichFileType::class, [
                 'required'      => false,
-                'allow_delete'  => true, // not mandatory, default is true
-                'download_uri' => true, // not mandatory, default is true
+                'allow_delete'  => false, // not mandatory, default is true
+                'download_uri' => false, // not mandatory, default is true
                 'label' => false,
             ])
             ->add('color', EntityType::class, [
@@ -98,7 +98,7 @@ class WineType extends AbstractType
                 'expanded' => true,
                 'mapped' => false,
                 'label' => false,
-
+                'by_reference' => false,
             ])
             ->add('purchaseDate', DateType::class, ['label' => false])
             ->add('price', MoneyType::class, ['currency' => 'EUR', 'label' => false])

@@ -13,7 +13,6 @@ use App\Repository\ColorRepository;
 use App\Repository\TypeRepository;
 use App\Form\SearchWineFormType;
 use App\Form\UpdateStockFormType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -123,6 +122,7 @@ class WineController extends AbstractController
         // $updateStock = $wineRepository->updateStock($wine);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $wine->setWinePairing($form->get('winePairing')->getData());
             $wineRepository->save($wine, true);
 
             $this->addFlash('success', 'Modification enregistrée !');
