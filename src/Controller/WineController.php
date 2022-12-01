@@ -108,6 +108,7 @@ class WineController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $wine->setWinePairing($form->get('winePairing')->getData());
             $wineRepository->save($wine, true);
 
             return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
