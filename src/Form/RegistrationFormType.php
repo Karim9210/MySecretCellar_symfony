@@ -27,7 +27,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions d\'utilisation.',
                     ]),
                 ],
                 'label' => 'En m\'inscrivant j\'accepte les conditions d\'utilisation du site',
@@ -36,14 +36,15 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
+                'label' => 'Mot de passe',
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit contenir au minimum {{ limit }} caractéres',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
@@ -51,6 +52,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('avatarFile', VichFileType::class, [
                 'required'      => false,
+                'label' => 'Photo de profil',
                 'allow_delete'  => false, // not mandatory, default is true
                 'download_uri' => false, // not mandatory, default is true
             ])
