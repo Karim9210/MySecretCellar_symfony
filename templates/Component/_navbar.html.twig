@@ -33,7 +33,7 @@
 							<p class="text-lightPrimary">MON PROFIL</p>
 						</a>
 					</li>					
-					<a href="logout" class="nav-link d-sm-none d-flex justify-content-end">
+					<a href="{{ path('app_logout')}}" class="nav-link d-sm-none d-flex justify-content-end">
 						<i class="bi bi-box-arrow-right text-lightPrimary" style="font-size: 2em"></i>
 					</a>
 
@@ -50,7 +50,7 @@
 							{{ app.user.userIdentifier|capitalize }}
 						</p>
 					</div>
-					<div style = "font-size:13px;"><a  href="logout"> <p class="text-center" style=" color:grey">se déconnecter </p></a></div>
+					<div style = "font-size:13px;"><a href="{{ path('app_logout')}}"> <p class="text-center" style=" color:grey">se déconnecter </p></a></div>
 					
 				</div>
 			{% endif %}
