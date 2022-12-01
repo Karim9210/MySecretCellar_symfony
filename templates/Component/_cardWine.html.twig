@@ -9,12 +9,13 @@
 				{% set color = '#eabca9' %}
 			{% endif %}
 
+
 			<a class="w-100 d-flex justify-content-center" href="{{ path('app_wine_show',{ id: wine.id }) }}">
 				<div class="bg-light border ps-3 rounded w-75 d-flex flex-column flex-md-row justify-content-around border  border-secondary">
 					<div class="d-flex gap-5">
 						<div class="rounded-circle my-3" style="border : solid 4px
-								{{color}}
-								">
+																																								{{color}}
+																																								">
 							<img class="rounded-circle" style=" object-fit:contain" src="{{ vich_uploader_asset( wine ) }}" height="100" width="100"/>
 						</div>
 
