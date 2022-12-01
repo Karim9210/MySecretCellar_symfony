@@ -77,7 +77,7 @@ class WineRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function sumValue(User $user): int
+    public function sumValue(User $user): ?int
     {
 
         $queryBuilder = $this-> createQueryBuilder('w')
@@ -85,13 +85,14 @@ class WineRepository extends ServiceEntityRepository
          ->setParameters(['user' => $user])
          ->select('SUM(w.value) AS total') ;
 
-
-
-        $queryBuilder->getQuery()->getSingleScalarResult();
-        return 0;
+        $number = $queryBuilder->getQuery()->getSingleScalarResult();
+        if ($number < 0 || $number === null) {
+            return 0;
+        }
+        return $number;
     }
 
-    public function bottleNumber(User $user): int
+    public function bottleNumber(User $user): ?int
     {
 
         $queryBuilder = $this-> createQueryBuilder('w')
@@ -99,14 +100,12 @@ class WineRepository extends ServiceEntityRepository
          ->setParameters(['user' => $user])
          ->select('SUM(w.stock) AS total') ;
 
-
-
-         $queryBuilder->getQuery()->getSingleScalarResult();
-         return 0;
+            $result = $queryBuilder->getQuery()->getSingleScalarResult();
+        if ($result < 0 || $result === null) {
+            return 0;
+        }
+        return $result;
     }
-
-
-
     public function randomWine(string $drinkBefore, User $user): ?array
     {
 
@@ -119,6 +118,8 @@ class WineRepository extends ServiceEntityRepository
         $random = $queryBuilder->getQuery()->getResult();
         return $random;
     }
+
+
 
 //    /**
 //     * @return Wine[] Returns an array of Wine objects
