@@ -1,0 +1,64 @@
+{% block navbar %}
+
+	<nav class="navbar bg-prune navbar-expand-sm fixed-top px-5 pt-3 shadow " style="letter-spacing:2px">
+
+		<button type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" class="navbar-toggler" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<img class="d-inline-block align-top " src="{{ asset('build/images/icones/Hamburger.svg') }}"/>
+		</button>
+
+		<div class="collapse navbar-collapse vh-98-md" id="navbarNav">
+
+			<div class="d-sm-none pt-5 border-bottom border-white">
+				<p class="text-lightPrimary">MENU</p>
+			</div>
+			<ul class="navbar-nav pt-1 gap-5 d-flex  justify-content-md-betwen w-100 ">
+				<div class="d-flex flex-column flex-sm-row">
+					<li class="nav-item active">
+						<a href="{{ path('app_home') }}" class="nav-link ">
+							<p class="text-lightPrimary">ACCUEIL</p>
+						</a>
+					</li>
+					<li class="nav-item active">
+						<a href="{{ path('app_wine_index') }}" class="nav-link ">
+							<p class="text-lightPrimary">MA CAVE</p>
+						</a>
+					</li>
+					<li class="nav-item active">
+						<a href="{{ path('app_wine_new') }}" class="nav-link ">
+							<p class="text-lightPrimary">AJOUTER UN VIN</p>
+						</a>
+					</li>
+					<li class="nav-item active">
+						<a href="{{ path('app_user_show', {id:app.user.id}) }}" class="nav-link">
+							<p class="text-lightPrimary">MON PROFIL</p>
+						</a>
+					</li>					
+					<a href="{{ path('app_logout')}}" class="nav-link d-sm-none d-flex justify-content-end">
+						<i class="bi bi-box-arrow-right text-lightPrimary" style="font-size: 2em"></i>
+					</a>
+
+				</div>	
+				
+
+			</ul>
+		</div>
+		<div class="d-flex align-items-baseline gap-5  ">
+			{% if app.user %}
+				<div class="d-flex flex-column pb-2 ">
+					<div class="nav-item active d-none d-md-block pb-0 mr-5 d-flex align-items-center">
+						<p class="text-lightPrimary pb-0 mb-0">la cave de
+							{{ app.user.userIdentifier|capitalize }}
+						</p>
+					</div>
+					<div style = "font-size:13px;"><a href="{{ path('app_logout')}}"> <p class="text-center" style=" color:grey">se déconnecter </p></a></div>
+					
+				</div>
+			{% endif %}
+
+			<div class="ms-auto">
+				<img src={{ asset('build/images/secretCellarLogo.svg') }} height="70">
+			</div>
+		
+		</div>
+	</nav>
+{% endblock %}

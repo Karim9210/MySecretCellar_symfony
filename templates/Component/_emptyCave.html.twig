@@ -1,0 +1,22 @@
+<div
+	class="bg-lightPrimary">
+	{# header #}
+	<div class="bg-lightSecondary pt-4 w-100" style="height:180px">
+		<div style="border-bottom:solid; border-bottom-color:var(--prune)">
+			<h1 class="pt-2 ps-2 mt-5 mx-5 text-prune" style="letter-spacing:5px">
+				Ma cave
+			</h1>
+		</div>
+	</div>
+	<div class=" d-flex pb-5 flex-column justify-content-center">
+		<img src="{{ asset('build/images/secretCellarLogoregister.svg')}}" height="355"/>
+		<div>
+			<p class=" text-center text-prune">Vous avez tout bu</p>
+		</div>
+		<div class="d-flex justify-content-center">
+			<a href="{{ path('app_wine_new')}}" class="btn btn-prune w-25 " type="button">
+				Ajouter un vin
+			</a>
+		</div>
+	</div>
+</div

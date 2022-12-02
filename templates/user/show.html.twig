@@ -1,0 +1,114 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+	<div class="bg-lightPrimary pb-5">
+		<div class="bg-lightSecondary pt-4 w-100" style="height: 180px">
+			<div style="border-bottom:solid; border-bottom-color:var(--prune)">
+				<h1 class="pt-2 ps-2 mt-5 mx-5 text-prune" style="letter-spacing:5px">
+					Mon profil
+				</h1>
+			</div>
+			<div class="d-flex p-2 justify-content-center align-items-center gap-3 ">
+
+				{% for message in app.flashes('success') %}
+					<div class="flash-notice">
+						{{ message }}
+					</div>
+				{% endfor %}
+
+			</div>
+		</div>
+
+
+		<div class="d-flex mt-5 justify-content-center align-items-center flex-column" style="height:100;">
+			<div class="col-lg-8 w-50">
+				<div class="card ">
+					<div class="card-body ">
+						<div class="d-flex justify-content-center align-items-center flex-column mb-4" style="height:100;">
+
+							<div class="row">
+								<div class="col-sm-3">
+									<img src="{{ vich_uploader_asset( user ) }}" class="rounded-circle" style="height: 200px;width:auto" alt="{{ user.pseudo }}"/>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 ">
+								<p class="mb-0 mt-4 text-prune">Nom d'utilisateur :
+								</p>
+							</div>
+							<div class="col-sm-9 mt-4">
+								<p class="text-muted mb-0">{{app.user.pseudo}}</p>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-3">
+								<p class="mb-0 text-prune">Email</p>
+							</div>
+							<div class="col-sm-9">
+								<p class="text-muted mb-0">{{app.user.email}}</p>
+							</div>
+						</div>
+						<hr>
+
+						<div class="d-flex justify-content-center ">
+							<div class="btn-group">
+								<button type="button" class="btn dropdown-toggle bg-white text-white" data-bs-toggle="dropdown" aria-expanded="false"></button>
+								<ul class=" p-4 dropdown-menu">
+									<li>
+										<h3 class="dropdown-item bg-prune text-white">Type de buveur</h3>
+									</li>
+									<li>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Petit joueur
+											</label>
+										</div>
+									</li>
+									<li>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Amateur
+											</label>
+										</div>
+									</li>
+									<li>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Professionnel
+											</label>
+										</div>
+									</li>
+									<li>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Vétéran
+											</label>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<a href="{{ path('app_user_edit', {'id': app.user.id}) }}" style='text-decoration:none;'>
+				<div class="d-flex justify-content-center ">
+					<button type="submit" id="btnupdate" class="btn text-white mb-3 mt-3 bg-prune">Modifier</button>
+				</div>
+
+			</a>
+			<div class="d-flex justify-content-center ">
+				{{ include('user/_delete_form.html.twig') }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

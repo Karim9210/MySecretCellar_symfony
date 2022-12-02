@@ -1,15 +1,70 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Ma cave
+{% endblock %}
 
-{% block body %}
-    <div class="pink-stripe">
-        <h1>
-            Let's start coding&nbsp;&#129304;
-        </h1>
-    </div>
-    <div class="white-stripe">
-        <img src="{{ asset('build/images/LOGO_WILD_CODE_SCHOOL.png') }}"
-             alt="">
-    </div>
+{% block content %}
+	<section class="d-flex flex-column-reverse ">
+		<div class="macaveEnChiffre bg-lightPrimary d-flex flex-column-reverse">
+			<div
+				class="container bg-lightSecondary p-4 mb-5">
+				{# <div class="my-5">																																																																																																																																														</div> #}
+				<div class=" pr-5">
+					{% block statsCave %}
+						{% include "home/statsCave.html.twig" %}
+					{% endblock %}
+				</div>
+
+			</div>
+			<div class="vignettes d-flex flex-column flex-md-row mt-5">
+				<div id="a-deguster" class="w-75 d-flex flex-column justify-content-center gap-3 bg-lightPrimary m-5 my-9 p-3 border-start border-end shadow-lg text-prune">
+					{% if bottle == 1 %}
+						{% include "Component/_randomWine.html.twig" %}
+					{% elseif bottle == 0 %}
+						{% include "Component/_citationHome.html.twig" %}
+					{% endif %}
+				</div>
+				<div  class=" d-flex d-none d-md-block w-75 bg-lightPrimary m-5 my-9 p-3 border-start border-end shadow-lg text-prune">
+					<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+						<div class="carousel-inner w-100 h-100">
+							<div class="carousel-item active w-100 h-100 bg-danger">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-1.jpg') }}" class="d-block w-100" alt="myCellarRandom-1">
+							</div>
+							<div class="carousel-item">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-2.jpg')}}" class="d-block w-100" alt="myCellarRandom-2">
+							</div>
+							<div class="carousel-item">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-4.jpg')}}" class="d-block w-100" alt="myCellarRandom-4">
+							</div>
+							<div class="carousel-item">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-5.jpg')}}" class="d-block w-100" alt="myCellarRandom-5">
+							</div>
+							<div class="carousel-item">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-6.jpg')}}" class="d-block w-100" alt="myCellarRandom-6">
+							</div>
+							<div class="carousel-item">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-7.jpg')}}" class="d-block w-100" alt="myCellarRandom-7">
+							</div>
+							<div class="carousel-item">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-8.jpg')}}" class="d-block w-100" alt="myCellarRandom-8">
+							</div>
+							<div class="carousel-item">
+								<img src="{{ asset('build/images/photosAccueil/myCellarRandom-10.jpg')}}" class="d-block w-100" alt="myCellarRandom-10">
+							</div>
+						</div>
+					</div>
+
+					<p style="font-family: var(--font-secondary); " class=" container d-flex justify-content-center align-content-center mt-4 fs-4">My Cellar</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="bg-lightSecondary pt-4 w-100" style="height: 180px">
+			<div style="border-bottom:solid; border-bottom-color:var(--prune)">
+				<h1 class="pt-2 ps-2 mt-5 mx-5 text-prune" style="letter-spacing:5px">
+					My Secret Cellar
+				</h1>
+			</div>
+		</div>
+	</section>
 {% endblock %}

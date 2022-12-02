@@ -1,0 +1,155 @@
+{{ form_start(form) }}
+<div class="container rounded-3 col-md-6 mx-auto p-4 m-5 border-start border-end shadow-lg text-prune ">
+
+	<div class="row mb-3 d-flex flex-column flex-md-row">
+		<div class="col d-flex flex-column align-content-center">
+
+			<img src="{{ asset('build/images/bouteille.svg') }}" style="max-height:140px;" class="mt-5 mb-3 w-1 h-auto">
+			{{ form_row(form.wineFile) }}
+		</div>
+		<div class="col">
+			<label for="domaine" class="form-label text-start p-1 mb-0">Domaine :</label>
+			{{ form_row(form.domaine,{'attr': {'placeholder':'Château Martillac...'}}) }}
+			<label for="type" name="type" class="form-label text-start p-1 mb-0">Type :</label>
+			{{ form_row(form.type) }}
+			<label for="vintage" class="form-label text-start p-1 mb-0">Année:</label>
+			{{ form_row(form.vintage,{'attr': {'placeholder':2005}}) }}
+		</div>
+	</div>
+
+	<div class="row  p-2 mb-3 d-flex flex-column flex-md-row">
+		<div class="col">
+			<label for="couleur" name="couleur" class="form-label text-start p-1 mb-0">
+				Couleur :
+			</label>
+			{{ form_row(form.color) }}
+			<label for="cepage" name="cepage" class="form-label text-start p-1 mb-0">
+				Cépages :
+			</label>
+			{{ form_widget(form.grapeVariety)}}
+		</div>
+		<div class="col">
+			<label for="appellation_id" class="form-label text-start p-1 mb-0">Appellation :</label>
+			{{ form_row(form.appellation) }}
+			<label for="region_id" class="form-label text-start p-1 mb-0 mt-1">Région :</label>
+			{{ form_row(form.region) }}
+			<label for="country_id" class="form-label text-start p-1 mb-0 mt-1">Pays :</label>
+			{{ form_row(form.country) }}
+		</div>
+	</div>
+
+	<div class="row p-2 mb-3 d-flex flex-column flex-md-row">
+		<div class="col">
+			<p class="ms-2 pt-3">A BOIRE AVEC</p>
+			<hr>
+			<div class=" ms-2 col checkBoxLeft">
+				{{ form_row(form.winePairing) }}
+				{# <label for="date_achat" class="form-label text-start p-1 mb-0">Date d'achat :</label>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						{{ form_row(form.purchaseDate) }} #}
+			</div>
+		</div>
+		<div class="col">
+			<p class="ms-2 pt-3">Description :</p>
+			<hr>
+			{{ form_row(form.description,{'attr': {'placeholder':'Belle robe, arômes fruits des bois...'}}) }}
+		</div>
+	</div>
+
+	<div class="row d-flex flex-column flex-md-row">
+		<div class="col">
+			<label for="price" class="form-label text-start p-1 mb-0">Prix d'achat :</label>
+			{{ form_row(form.price) }}
+			<label for="aging" class="form-label text-start p-1 mb-0">Boire avant :</label>
+			{{ form_row(form.drinkBefore,{'attr': {'placeholder':2021}}) }}
+			<label for="stock" class="form-label text-start p-1 mb-0">Stock :</label>
+			{{ form_row(form.stock) }}
+		</div>
+		<div class="col">
+			<label for="value" class="form-label text-start p-1 mb-0 ">Valeur à date :</label>
+			{{ form_row(form.value) }}
+			<label for="location" class="form-label text-start p-1 mb-0">Emplacement :</label>
+			{{ form_row(form.cellarLocation,{'attr': {'placeholder':'casier : B-08'}}) }}
+			<label for="location" class="form-label text-start p-1 mb-0">Date d'achat :</label>
+			{{ form_row(form.purchaseDate) }}
+		</div>
+	</div>
+
+
+	<div class="row d-flex flex-column flex-md-row">
+		<div class="col d-flex mt-1 ">
+			<div>
+				<label for="ranking" class="form-label text-start p-1 mb-0">Note :</label>
+				{{ form_row(form.ranking,{'attr': {'class':' pt-3'}}) }}
+			</div>
+			<div class="etoile pt-5">
+				<div class="input_etoile " id="input_etoile1">
+					<span class="etoile ms-1 ">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+				</div>
+				<div class=" input_etoile mt-1" id="input_etoile2">
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+				</div>
+				<div class=" input_etoile" id="input_etoile3">
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+				</div>
+				<div class=" input_etoile" id="input_etoile4">
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+				</div>
+				<div class=" input_etoile pt-1" id="input_etoile5">
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+					<span class="etoile ms-1">
+						<i class="bi bi-star-fill text-warning"></i>
+					</span>
+				</div>
+			</div>
+
+		</div>
+		<div class="col">
+			<label for="comment" class="form-label text-start text-start p-1 mb-0">Commentaire :</label>
+			{{ form_row(form.comment,{'attr': {'placeholder':'acheté à la foire aux vins Carrefour'}}) }}
+		</div>
+	</div>
+
+	<div class="d-flex justify-content-center gap-5 ">
+		<button class="btn btn-prune mb-3 mt-3">{{ button_label|default('Enregistrer') }}</button>
+		<a href={{ path('app_wine_index')}} type="submit" id="btnadd" class=" btn btn-pinkWine  mb-3 mt-3">Annuler</a>
+	</div>
+
+</div>
+{{ form_end(form) }}</div>
